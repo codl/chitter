@@ -1,10 +1,10 @@
 {
-	"name": "Mastodon",
-	"description": "Mastodon is a free, open-source social network server.",
+	"name": "Chitter",
+	"description": "Chitter is a friendly gathering based on Mastodon.",
 	"icons": [
 		{
-			"src": "\/android-chrome-192x192.png",
-			"sizes": "192x192",
+			"src": "\/android-chrome.png",
+			"sizes": "200x200",
 			"type": "image\/png"
 		}
 	],
