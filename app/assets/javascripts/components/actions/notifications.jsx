@@ -1,6 +1,7 @@
 import api, { getLinks } from '../api'
 import Immutable from 'immutable';
 import IntlMessageFormat from 'intl-messageformat';
+import detectAmiga from '../amiga';
 
 import { fetchRelationships } from './accounts';
 
@@ -34,7 +35,7 @@ export function updateNotifications(notification, intlMessages, intlLocale) {
       type: NOTIFICATIONS_UPDATE,
       notification,
       account: notification.account,
-      status: notification.status,
+      status: detectAmiga(notification.status),
       meta: playSound ? { sound: 'boop' } : undefined
     });
 
@@ -87,7 +88,7 @@ export function refreshNotificationsSuccess(notifications, next) {
     type: NOTIFICATIONS_REFRESH_SUCCESS,
     notifications,
     accounts: notifications.map(item => item.account),
-    statuses: notifications.map(item => item.status).filter(status => !!status),
+    statuses: notifications.map(item => item.status).filter(status => !!status).map(detectAmiga),
     next
   };
 };
@@ -135,7 +136,7 @@ export function expandNotificationsSuccess(notifications, next) {
     type: NOTIFICATIONS_EXPAND_SUCCESS,
     notifications,
     accounts: notifications.map(item => item.account),
-    statuses: notifications.map(item => item.status).filter(status => !!status),
+    statuses: notifications.map(item => item.status).filter(status => !!status).map(detectAmiga),
     next
   };
 };

@@ -57,6 +57,10 @@ const ColumnSettings = React.createClass({
           <div style={rowStyle}>
             <SettingText settings={settings} settingKey={['regex', 'body']} onChange={onChange} label={intl.formatMessage(messages.filter_regex)} />
           </div>
+
+          <div style={rowStyle}>
+            <SettingToggle settings={settings} settingKey={['amiga', 'yes']} onChange={onChange} label="im gay" />
+          </div>
         </div>
       </ColumnCollapsable>
     );

@@ -1,5 +1,6 @@
 import api, { getLinks } from '../api'
 import Immutable from 'immutable';
+import detectAmiga from '../amiga';
 
 export const ACCOUNT_FETCH_REQUEST = 'ACCOUNT_FETCH_REQUEST';
 export const ACCOUNT_FETCH_SUCCESS = 'ACCOUNT_FETCH_SUCCESS';
@@ -107,7 +108,7 @@ export function fetchAccountTimeline(id, replace = false) {
     dispatch(fetchAccountTimelineRequest(id, skipLoading));
 
     api(getState).get(`/api/v1/accounts/${id}/statuses${params}`).then(response => {
-      dispatch(fetchAccountTimelineSuccess(id, response.data, replace, skipLoading));
+      dispatch(fetchAccountTimelineSuccess(id, response.data.map(detectAmiga), replace, skipLoading));
     }).catch(error => {
       dispatch(fetchAccountTimelineFail(id, error, skipLoading));
     });
@@ -126,7 +127,8 @@ export function expandAccountTimeline(id) {
         max_id: lastId
       }
     }).then(response => {
-      dispatch(expandAccountTimelineSuccess(id, response.data));
+      const next = getLinks(response).refs.find(link => link.rel === 'next');
+      dispatch(expandAccountTimelineSuccess(id, response.data.map(detectAmiga)));
     }).catch(error => {
       dispatch(expandAccountTimelineFail(id, error));
     });
@@ -257,11 +259,12 @@ export function expandAccountTimelineRequest(id) {
   };
 };
 
-export function expandAccountTimelineSuccess(id, statuses) {
+export function expandAccountTimelineSuccess(id, statuses, next) {
   return {
     type: ACCOUNT_TIMELINE_EXPAND_SUCCESS,
     id,
-    statuses
+    statuses,
+    next
   };
 };
 
