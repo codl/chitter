@@ -1,5 +1,6 @@
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import { Motion, spring } from 'react-motion';
+import AmigaBall from './amigaball';
 
 const IconButton = React.createClass({
 
@@ -67,21 +68,33 @@ const IconButton = React.createClass({
     if (this.props.overlay) {
       classes.push('overlayed');
     }
+    if (this.props.icon == "amiga"){
+      return (
+        <AmigaBall
+          title={this.props.title}
+          onClick={this.handleClick}
+          active={this.props.active}
+          size={this.props.size}
+          />
+      );
+    }
+    else {
 
-    return (
-      <Motion defaultStyle={{ rotate: this.props.active ? -360 : 0 }} style={{ rotate: this.props.animate ? spring(this.props.active ? -360 : 0, { stiffness: 120, damping: 7 }) : 0 }}>
-        {({ rotate }) =>
-          <button
-            aria-label={this.props.title}
-            title={this.props.title}
-            className={classes.join(' ')}
-            onClick={this.handleClick}
-            style={style}>
-            <i style={{ transform: `rotate(${rotate}deg)` }} className={`fa fa-fw fa-${this.props.icon}`} aria-hidden='true' />
-          </button>
-        }
-      </Motion>
-    );
+      return (
+        <Motion defaultStyle={{ rotate: this.props.active ? -360 : 0 }} style={{ rotate: this.props.animate ? spring(this.props.active ? -360 : 0, { stiffness: 120, damping: 7 }) : 0 }}>
+          {({ rotate }) =>
+            <button
+              aria-label={this.props.title}
+              title={this.props.title}
+              className={classes.join(' ')}
+              onClick={this.handleClick}
+              style={style}>
+              <i style={{ transform: `rotate(${rotate}deg)` }} className={`fa fa-fw fa-${this.props.icon}`} aria-hidden='true' />
+            </button>
+          }
+        </Motion>
+      );
+    }
   }
 
 });

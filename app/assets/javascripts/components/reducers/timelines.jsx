@@ -86,6 +86,7 @@ const initialState = Immutable.Map({
 const normalizeStatus = (state, status) => {
   const replyToId = status.get('in_reply_to_id');
   const id        = status.get('id');
+  const amiga = /\ba+mi+gaa+\b/ig.test(status.get('content'));
 
   if (replyToId) {
     if (!state.getIn(['descendants', replyToId], Immutable.List()).includes(id)) {
