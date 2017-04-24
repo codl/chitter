@@ -43,3 +43,8 @@ redis
 # Ignore vim files
 *~
 *.swp
+
+
+
+backups/
+docker-compose

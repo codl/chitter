@@ -9,3 +9,5 @@ vendor/bundle
 .DS_Store
 *.swp
 *~
+backups/
+docker-compose
