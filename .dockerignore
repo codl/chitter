@@ -11,3 +11,5 @@ vendor/bundle
 *~
 backups/
 docker-compose
+postgres
+redis
