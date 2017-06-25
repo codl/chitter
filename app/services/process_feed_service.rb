@@ -20,6 +20,8 @@ class ProcessFeedService < BaseService
   end
 
   class ProcessEntry
+    include AuthorExtractor
+
     def call(xml, account)
       @account = account
       @xml     = xml
@@ -40,30 +42,46 @@ class ProcessFeedService < BaseService
     private
 
     def create_status
-      Rails.logger.debug "Creating remote status #{id}"
-      status, just_created = status_from_xml(@xml)
+      if redis.exists("delete_upon_arrival:#{id}")
+        Rails.logger.debug "Delete for status #{id} was queued, ignoring"
+        return
+      end
 
-      return if status.nil?
-      return status unless just_created
+      status, just_created = nil
+
+      Rails.logger.debug "Creating remote status #{id}"
 
       if verb == :share
         original_status = shared_status_from_xml(@xml.at_xpath('.//activity:object', activity: TagManager::AS_XMLNS))
-        status.reblog   = original_status
-
-        if original_status.nil?
-          status.destroy
-          return nil
-        elsif original_status.reblog?
-          status.reblog = original_status.reblog
-        end
+        return nil if original_status.nil?
       end
 
-      status.save!
+      ApplicationRecord.transaction do
+        status, just_created = status_from_xml(@xml)
+
+        return if status.nil?
+        return status unless just_created
+
+        if verb == :share
+          status.reblog = original_status.reblog? ? original_status.reblog : original_status
+        end
+
+        status.save!
+      end
+
+      if thread?(@xml) && status.thread.nil?
+        Rails.logger.debug "Trying to attach #{status.id} (#{id(@xml)}) to #{thread(@xml).first}"
+        ThreadResolveWorker.perform_async(status.id, thread(@xml).second)
+      end
 
       notify_about_mentions!(status) unless status.reblog?
       notify_about_reblog!(status) if status.reblog? && status.reblog.account.local?
+
       Rails.logger.debug "Queuing remote status #{status.id} (#{id}) for distribution"
+
+      LinkCrawlWorker.perform_async(status.id) unless status.spoiler_text?
       DistributionWorker.perform_async(status.id)
+
       status
     end
 
@@ -82,7 +100,13 @@ class ProcessFeedService < BaseService
     def delete_status
       Rails.logger.debug "Deleting remote status #{id}"
       status = Status.find_by(uri: id)
-      RemoveStatusService.new.call(status) unless status.nil?
+
+      if status.nil?
+        redis.setex("delete_upon_arrival:#{id}", 6 * 3_600, id)
+      else
+        RemoveStatusService.new.call(status)
+      end
+
       nil
     end
 
@@ -108,7 +132,7 @@ class ProcessFeedService < BaseService
       # If that author cannot be found, don't record the status (do not misattribute)
       if account?(entry)
         begin
-          account = find_or_resolve_account(acct(entry))
+          account = author_from_xml(entry)
           return [nil, false] if account.nil?
         rescue Goldfinger::Error
           return [nil, false]
@@ -128,13 +152,10 @@ class ProcessFeedService < BaseService
         created_at: published(entry),
         reply: thread?(entry),
         language: content_language(entry),
-        visibility: visibility_scope(entry)
+        visibility: visibility_scope(entry),
+        conversation: find_or_create_conversation(entry),
+        thread: thread?(entry) ? find_status(thread(entry).first) : nil
       )
-
-      if thread?(entry)
-        Rails.logger.debug "Trying to attach #{status.id} (#{id(entry)}) to #{thread(entry).first}"
-        status.thread = find_or_resolve_status(status, *thread(entry))
-      end
 
       mentions_from_xml(status, entry)
       hashtags_from_xml(status, entry)
@@ -143,22 +164,22 @@ class ProcessFeedService < BaseService
       [status, true]
     end
 
-    def find_or_resolve_account(acct)
-      FollowRemoteAccountService.new.call(acct)
-    end
+    def find_or_create_conversation(xml)
+      uri = xml.at_xpath('./ostatus:conversation', ostatus: TagManager::OS_XMLNS)&.attribute('ref')&.content
+      return if uri.nil?
 
-    def find_or_resolve_status(parent, uri, url)
-      status = find_status(uri)
+      if TagManager.instance.local_id?(uri)
+        local_id = TagManager.instance.unique_tag_to_local_id(uri, 'Conversation')
+        return Conversation.find_by(id: local_id)
+      end
 
-      ThreadResolveWorker.perform_async(parent.id, url) if status.nil?
-
-      status
+      Conversation.find_by(uri: uri) || Conversation.create!(uri: uri)
     end
 
     def find_status(uri)
       if TagManager.instance.local_id?(uri)
         local_id = TagManager.instance.unique_tag_to_local_id(uri, 'Status')
-        return Status.find(local_id)
+        return Status.find_by(id: local_id)
       end
 
       Status.find_by(uri: uri)
@@ -187,7 +208,7 @@ class ProcessFeedService < BaseService
       if TagManager.instance.web_domain?(url.host)
         Account.find_local(url.path.gsub('/users/', ''))
       else
-        Account.find_by(uri: href) || Account.find_by(url: href) || FetchRemoteAccountService.new.call(href)
+        Account.where(uri: href).or(Account.where(url: href)).first || FetchRemoteAccountService.new.call(href)
       end
     end
 
@@ -205,7 +226,7 @@ class ProcessFeedService < BaseService
         media = MediaAttachment.where(status: parent, remote_url: link['href']).first_or_initialize(account: parent.account, status: parent, remote_url: link['href'])
         parsed_url = Addressable::URI.parse(link['href']).normalize
 
-        next if !%w[http https].include?(parsed_url.scheme) || parsed_url.host.empty?
+        next if !%w(http https).include?(parsed_url.scheme) || parsed_url.host.empty?
 
         media.save
 
@@ -213,8 +234,8 @@ class ProcessFeedService < BaseService
 
         begin
           media.file_remote_url = link['href']
-          media.save
-        rescue OpenURI::HTTPError, Paperclip::Errors::NotIdentifiedByImageMagickError
+          media.save!
+        rescue ActiveRecord::RecordInvalid
           next
         end
       end
@@ -276,12 +297,8 @@ class ProcessFeedService < BaseService
       !xml.at_xpath('./xmlns:author', xmlns: TagManager::XMLNS).nil?
     end
 
-    def acct(xml = @xml)
-      username = xml.at_xpath('./xmlns:author/xmlns:name', xmlns: TagManager::XMLNS).content
-      url      = xml.at_xpath('./xmlns:author/xmlns:uri', xmlns: TagManager::XMLNS).content
-      domain   = Addressable::URI.parse(url).normalize.host
-
-      "#{username}@#{domain}"
+    def redis
+      Redis.current
     end
   end
 end

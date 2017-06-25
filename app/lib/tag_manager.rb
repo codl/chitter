@@ -48,6 +48,7 @@ class TagManager
   end
 
   def unique_tag_to_local_id(tag, expected_type)
+    return nil unless local_id?(tag)
     matches = Regexp.new("objectId=([\\d]+):objectType=#{expected_type}").match(tag)
     return matches[1] unless matches.nil?
   end
@@ -65,8 +66,10 @@ class TagManager
   end
 
   def normalize_domain(domain)
+    return if domain.nil?
+
     uri = Addressable::URI.new
-    uri.host = domain
+    uri.host = domain.gsub(/[\/]/, '')
     uri.normalize.host
   end
 
@@ -90,8 +93,6 @@ class TagManager
       account_url(target)
     when :note, :comment, :activity
       unique_tag(target.created_at, target.id, 'Status')
-    else
-      unique_tag(target.stream_entry.created_at, target.stream_entry.activity_id, target.stream_entry.activity_type)
     end
   end
 
@@ -103,8 +104,6 @@ class TagManager
       short_account_url(target)
     when :note, :comment, :activity
       short_account_status_url(target.account, target)
-    else
-      account_stream_entry_url(target.account, target.stream_entry)
     end
   end
 end
