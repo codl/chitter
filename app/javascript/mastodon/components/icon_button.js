@@ -75,6 +75,7 @@ class IconButton extends React.PureComponent {
           onClick={this.handleClick}
           active={this.props.active}
           size={this.props.size}
+          className={classes.join(' ')}
           />
       );
     }

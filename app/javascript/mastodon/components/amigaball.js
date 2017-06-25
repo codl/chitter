@@ -113,7 +113,7 @@ class AmigaBall extends React.Component {
   }
   render() {
     return <canvas ref="canvas"
-      className="status__action-bar-button"
+      className={this.props.className}
       width={this.props.size * 1.28571429}
       height={this.props.size * 1.28571429}
       onClick={this.props.onClick}
