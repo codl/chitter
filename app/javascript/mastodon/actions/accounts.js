@@ -1,5 +1,4 @@
 import api, { getLinks } from '../api';
-import Immutable from 'immutable';
 import detectAmiga from '../amiga';
 
 export const ACCOUNT_FETCH_REQUEST = 'ACCOUNT_FETCH_REQUEST';
@@ -598,7 +597,7 @@ export function authorizeFollowRequest(id) {
 
     api(getState)
       .post(`/api/v1/follow_requests/${id}/authorize`)
-      .then(response => dispatch(authorizeFollowRequestSuccess(id)))
+      .then(() => dispatch(authorizeFollowRequestSuccess(id)))
       .catch(error => dispatch(authorizeFollowRequestFail(id, error)));
   };
 };
@@ -632,7 +631,7 @@ export function rejectFollowRequest(id) {
 
     api(getState)
       .post(`/api/v1/follow_requests/${id}/reject`)
-      .then(response => dispatch(rejectFollowRequestSuccess(id)))
+      .then(() => dispatch(rejectFollowRequestSuccess(id)))
       .catch(error => dispatch(rejectFollowRequestFail(id, error)));
   };
 };

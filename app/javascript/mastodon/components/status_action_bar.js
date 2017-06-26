@@ -135,8 +135,12 @@ class StatusActionBar extends ImmutablePureComponent {
       replyTitle = intl.formatMessage(messages.replyAll);
     }
 
-    let favIcon = 'star';
-    if(status.get('amiga')) favIcon = 'amiga';
+    let favIcon;
+    if (status.get('amiga', false)) {
+      favIcon = 'amiga';
+    } else {
+      favIcon = 'star';
+    }
 
     return (
       <div className='status__action-bar'>

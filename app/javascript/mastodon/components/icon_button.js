@@ -1,8 +1,9 @@
-import AmigaBall from './amigaball';
 import React from 'react';
 import Motion from 'react-motion/lib/Motion';
 import spring from 'react-motion/lib/spring';
 import PropTypes from 'prop-types';
+
+import AmigaBall from './amigaball';
 
 class IconButton extends React.PureComponent {
 
@@ -75,25 +76,28 @@ class IconButton extends React.PureComponent {
           onClick={this.handleClick}
           active={this.props.active}
           size={this.props.size}
+          className={classes.join(' ')}
           />
       );
     }
     else {
-      return (
-        <Motion defaultStyle={{ rotate: this.props.active ? -360 : 0 }} style={{ rotate: this.props.animate ? spring(this.props.active ? -360 : 0, { stiffness: 120, damping: 7 }) : 0 }}>
-          {({ rotate }) =>
-            <button
-              aria-label={this.props.title}
-              title={this.props.title}
-              className={classes.join(' ')}
-              onClick={this.handleClick}
-              style={style}
-            >
-              <i style={{ transform: `rotate(${rotate}deg)` }} className={`fa fa-fw fa-${this.props.icon}`} aria-hidden='true' />
-            </button>
-          }
-        </Motion>
-      );
+
+    return (
+      <Motion defaultStyle={{ rotate: this.props.active ? -360 : 0 }} style={{ rotate: this.props.animate ? spring(this.props.active ? -360 : 0, { stiffness: 120, damping: 7 }) : 0 }}>
+        {({ rotate }) =>
+          <button
+            aria-label={this.props.title}
+            title={this.props.title}
+            className={classes.join(' ')}
+            onClick={this.handleClick}
+            style={style}
+          >
+            <i style={{ transform: `rotate(${rotate}deg)` }} className={`fa fa-fw fa-${this.props.icon}`} aria-hidden='true' />
+          </button>
+        }
+      </Motion>
+    );
+
     }
   }
 

@@ -19,7 +19,7 @@ export const NOTIFICATIONS_EXPAND_FAIL    = 'NOTIFICATIONS_EXPAND_FAIL';
 export const NOTIFICATIONS_CLEAR      = 'NOTIFICATIONS_CLEAR';
 export const NOTIFICATIONS_SCROLL_TOP = 'NOTIFICATIONS_SCROLL_TOP';
 
-const messages = defineMessages({
+defineMessages({
   mention: { id: 'notification.mention', defaultMessage: '{name} mentioned you' },
 });
 
@@ -111,6 +111,7 @@ export function refreshNotificationsSuccess(notifications, skipLoading, next) {
     notifications,
     accounts: notifications.map(item => item.account),
     statuses: notifications.map(item => item.status).filter(status => !!status).map(detectAmiga),
+    skipLoading,
     next,
   };
 };

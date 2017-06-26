@@ -34,6 +34,7 @@ import {
 } from '../actions/favourites';
 import { SEARCH_FETCH_SUCCESS } from '../actions/search';
 import Immutable from 'immutable';
+import detectAmiga from '../amiga';
 
 const normalizeStatus = (state, status) => {
   if (!status) {
@@ -89,7 +90,7 @@ export default function statuses(state = initialState, action) {
   case TIMELINE_UPDATE:
   case STATUS_FETCH_SUCCESS:
   case NOTIFICATIONS_UPDATE:
-    return normalizeStatus(state, action.status);
+    return normalizeStatus(state, detectAmiga(action.status));
   case REBLOG_SUCCESS:
   case UNREBLOG_SUCCESS:
   case FAVOURITE_SUCCESS:
