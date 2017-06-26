@@ -119,7 +119,7 @@ class AmigaBall extends React.Component {
       onClick={this.props.onClick}
       aria-label={this.props.title}
       title={this.props.title}
-      style={{ cursor: "pointer", transform: "rotate(20deg)", marginRight: "18px" }}
+      style={{ cursor: "pointer", transform: "rotate(20deg)" }}
     />;
   }
 }
