@@ -41,6 +41,8 @@ const normalizeStatus = (state, status) => {
     return state;
   }
 
+  status = detectAmiga(status)
+
   const normalStatus   = { ...status };
   normalStatus.account = status.account.id;
 
@@ -90,7 +92,7 @@ export default function statuses(state = initialState, action) {
   case TIMELINE_UPDATE:
   case STATUS_FETCH_SUCCESS:
   case NOTIFICATIONS_UPDATE:
-    return normalizeStatus(state, detectAmiga(action.status));
+    return normalizeStatus(state, action.status);
   case REBLOG_SUCCESS:
   case UNREBLOG_SUCCESS:
   case FAVOURITE_SUCCESS:
