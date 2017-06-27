@@ -34,14 +34,11 @@ import {
 } from '../actions/favourites';
 import { SEARCH_FETCH_SUCCESS } from '../actions/search';
 import Immutable from 'immutable';
-import detectAmiga from '../amiga';
 
 const normalizeStatus = (state, status) => {
   if (!status) {
     return state;
   }
-
-  status = detectAmiga(status)
 
   const normalStatus   = { ...status };
   normalStatus.account = status.account.id;

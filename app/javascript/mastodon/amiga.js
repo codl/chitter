@@ -1,5 +1,5 @@
-function detectAmiga(status) {
-  return {...status, amiga: /\ba+mi+gaa+\b/ig.test(status.content)};
+function hasAmiga(string) {
+  return /\ba+mi+gaa+\b/ig.test(string);
 }
 
-export default detectAmiga;
+export { hasAmiga }

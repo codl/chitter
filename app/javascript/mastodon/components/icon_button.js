@@ -1,7 +1,6 @@
 import React from 'react';
 import Motion from 'react-motion/lib/Motion';
 import spring from 'react-motion/lib/spring';
-import AmigaBall from './amigaball';
 import PropTypes from 'prop-types';
 
 class IconButton extends React.PureComponent {
@@ -64,22 +63,10 @@ class IconButton extends React.PureComponent {
     if (this.props.overlay) {
       classes.push('overlayed');
     }
+
     if (this.props.className) {
       classes.push(this.props.className);
     }
-
-    if (this.props.icon == "amiga"){
-      return (
-        <AmigaBall
-          title={this.props.title}
-          onClick={this.handleClick}
-          active={this.props.active}
-          size={this.props.size}
-          className={classes.join(' ')}
-          />
-      );
-    }
-    else {
 
     return (
       <Motion defaultStyle={{ rotate: this.props.active ? -360 : 0 }} style={{ rotate: this.props.animate ? spring(this.props.active ? -360 : 0, { stiffness: 120, damping: 7 }) : 0 }}>
@@ -97,7 +84,6 @@ class IconButton extends React.PureComponent {
       </Motion>
     );
 
-    }
   }
 
 }

@@ -1,6 +1,5 @@
 import api, { getLinks } from '../api';
 import Immutable from 'immutable';
-import detectAmiga from '../amiga';
 
 export const TIMELINE_UPDATE  = 'TIMELINE_UPDATE';
 export const TIMELINE_DELETE  = 'TIMELINE_DELETE';
@@ -22,7 +21,7 @@ export function refreshTimelineSuccess(timeline, statuses, skipLoading, next) {
   return {
     type: TIMELINE_REFRESH_SUCCESS,
     timeline,
-    statuses: statuses.map(detectAmiga),
+    statuses,
     skipLoading,
     next,
   };
@@ -35,7 +34,7 @@ export function updateTimeline(timeline, status) {
     dispatch({
       type: TIMELINE_UPDATE,
       timeline,
-      status: detectAmiga(status),
+      status,
       references,
     });
   };
@@ -126,7 +125,7 @@ export function expandTimeline(timelineId, path, params = {}) {
 
     api(getState).get(path, { params }).then(response => {
       const next = getLinks(response).refs.find(link => link.rel === 'next');
-      dispatch(expandTimelineSuccess(timelineId, response.data.map(detectAmiga), next ? next.uri : null));
+      dispatch(expandTimelineSuccess(timelineId, response.data, next ? next.uri : null));
     }).catch(error => {
       dispatch(expandTimelineFail(timelineId, error));
     });

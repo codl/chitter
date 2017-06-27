@@ -1,6 +1,12 @@
 import React from 'react';
 
 class AmigaBall extends React.Component {
+
+  static defaultProps = {
+    size: 18,
+  };
+
+
   componentDidMount(){
     this.bail=false;
     this.activated=this.props.active?1:0;
