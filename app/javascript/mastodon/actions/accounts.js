@@ -1,5 +1,4 @@
 import api, { getLinks } from '../api';
-import detectAmiga from '../amiga';
 
 export const ACCOUNT_FETCH_REQUEST = 'ACCOUNT_FETCH_REQUEST';
 export const ACCOUNT_FETCH_SUCCESS = 'ACCOUNT_FETCH_SUCCESS';

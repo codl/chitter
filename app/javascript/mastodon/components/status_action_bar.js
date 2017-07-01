@@ -2,6 +2,8 @@ import React from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import IconButton from './icon_button';
+import AmigaBall from './amigaball';
+import { hasAmiga } from '../amiga';
 import DropdownMenu from './dropdown_menu';
 import { defineMessages, injectIntl } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
@@ -22,7 +24,8 @@ const messages = defineMessages({
   unmuteConversation: { id: 'status.unmute_conversation', defaultMessage: 'Unmute conversation' },
 });
 
-class StatusActionBar extends ImmutablePureComponent {
+@injectIntl
+export default class StatusActionBar extends ImmutablePureComponent {
 
   static contextTypes = {
     router: PropTypes.object,
@@ -86,7 +89,6 @@ class StatusActionBar extends ImmutablePureComponent {
 
   handleReport = () => {
     this.props.onReport(this.props.status);
-    this.context.router.history.push('/report');
   }
 
   handleConversationMuteClick = () => {
@@ -135,18 +137,28 @@ class StatusActionBar extends ImmutablePureComponent {
       replyTitle = intl.formatMessage(messages.replyAll);
     }
 
-    let favIcon;
-    if (status.get('amiga', false)) {
-      favIcon = 'amiga';
+    let maybeAmigaBall;
+    if (hasAmiga(status.get('content'))) {
+      maybeAmigaBall = (
+        <AmigaBall
+          title={intl.formatMessage(messages.favourite)}
+          onClick={this.handleFavouriteClick}
+          active={status.get('favourited')}
+          className='status__action-bar-button star-icon'
+          />
+      );
     } else {
-      favIcon = 'star';
+      maybeAmigaBall = (
+        <IconButton className='status__action-bar-button star-icon' animate active={status.get('favourited')} title={intl.formatMessage(messages.favourite)} icon='star' onClick={this.handleFavouriteClick} />
+      );
     }
+
 
     return (
       <div className='status__action-bar'>
         <IconButton className='status__action-bar-button' title={replyTitle} icon={replyIcon} onClick={this.handleReplyClick} />
         <IconButton className='status__action-bar-button' disabled={reblogDisabled} active={status.get('reblogged')} title={reblogDisabled ? intl.formatMessage(messages.cannot_reblog) : intl.formatMessage(messages.reblog)} icon={reblogIcon} onClick={this.handleReblogClick} />
-        <IconButton className='status__action-bar-button star-icon' animate active={status.get('favourited')} title={intl.formatMessage(messages.favourite)} icon={favIcon} onClick={this.handleFavouriteClick} />
+        {maybeAmigaBall}
 
         <div className='status__action-bar-dropdown'>
           <DropdownMenu items={menu} icon='ellipsis-h' size={18} direction='right' ariaLabel='More' />
@@ -156,5 +168,3 @@ class StatusActionBar extends ImmutablePureComponent {
   }
 
 }
-
-export default injectIntl(StatusActionBar);
