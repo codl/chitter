@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import IconButton from '../../../components/icon_button';
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import DropdownMenu from '../../../components/dropdown_menu';
+import DropdownMenuContainer from '../../../containers/dropdown_menu_container';
 import { defineMessages, injectIntl } from 'react-intl';
 import { hasAmiga } from '../../../amiga';
 import AmigaBall from '../../../components/amigaball';
@@ -15,6 +15,7 @@ const messages = defineMessages({
   cannot_reblog: { id: 'status.cannot_reblog', defaultMessage: 'This post cannot be boosted' },
   favourite: { id: 'status.favourite', defaultMessage: 'Favourite' },
   report: { id: 'status.report', defaultMessage: 'Report @{name}' },
+  share: { id: 'status.share', defaultMessage: 'Share' },
 });
 
 @injectIntl
@@ -60,6 +61,13 @@ export default class ActionBar extends React.PureComponent {
     this.props.onReport(this.props.status);
   }
 
+  handleShare = () => {
+    navigator.share({
+      text: this.props.status.get('search_index'),
+      url: this.props.status.get('url'),
+    });
+  }
+
   render () {
     const { status, me, intl } = this.props;
 
@@ -72,6 +80,10 @@ export default class ActionBar extends React.PureComponent {
       menu.push(null);
       menu.push({ text: intl.formatMessage(messages.report, { name: status.getIn(['account', 'username']) }), action: this.handleReport });
     }
+
+    const shareButton = ('share' in navigator) && status.get('visibility') === 'public' && (
+      <div className='detailed-status__button'><IconButton title={intl.formatMessage(messages.share)} icon='share-alt' onClick={this.handleShare} /></div>
+    );
 
     let reblogIcon = 'retweet';
     if (status.get('visibility') === 'direct') reblogIcon = 'envelope';
@@ -103,7 +115,7 @@ export default class ActionBar extends React.PureComponent {
         </div>
 
         <div className='detailed-status__action-bar-dropdown'>
-          <DropdownMenu size={18} icon='ellipsis-h' items={menu} direction='left' ariaLabel='More' />
+          <DropdownMenuContainer size={18} icon='ellipsis-h' items={menu} direction='left' ariaLabel='More' />
         </div>
       </div>
     );
