@@ -90,7 +90,6 @@ export default class IconButton extends React.PureComponent {
         }
       </Motion>
     );
-
   }
 
 }
