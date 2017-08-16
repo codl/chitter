@@ -23,8 +23,8 @@ import { countableText } from '../util/counter';
 const messages = defineMessages({
   placeholder: { id: 'compose_form.placeholder', defaultMessage: 'What is on your mind?' },
   spoiler_placeholder: { id: 'compose_form.spoiler_placeholder', defaultMessage: 'Write your warning here' },
-  publish: { id: 'compose_form.publish', defaultMessage: 'Toot' },
-  publishLoud: { id: 'compose_form.publish_loud', defaultMessage: '{publish}!' },
+  publish: { id: 'chitter.compose_form.publish', defaultMessage: 'Boop' },
+  publishLoud: { id: 'chitter.compose_form.publish_loud', defaultMessage: '{publish}!' },
 });
 
 @injectIntl
