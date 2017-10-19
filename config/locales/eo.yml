@@ -424,7 +424,8 @@ eo:
   terms:
     title: "%{instance} Reguloj de servo kaj Politikaj pri privatecoj"
   themes:
-    default: Mastodon
+    default: Chitter
+    classic: Classic
   time:
     formats:
       default: "%b %d, %Y, %H:%M"

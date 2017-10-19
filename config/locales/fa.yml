@@ -588,7 +588,8 @@ fa:
       <p>این نوشته اقتباسی است از <a href="https://github.com/discourse/discourse">سیاست رازداری Discourse</a>.</p>
     title: شرایط استفاده و سیاست رازداری %{instance}
   themes:
-    default: Mastodon
+    default: Chitter
+    classic: Classic
   time:
     formats:
       default: "%d %b %Y, %H:%M"

@@ -588,7 +588,8 @@ sv:
       <p>Ursprungligen anpassad från <a href="https://github.com/discourse/discourse">Discourse integritetspolicy</a>.</p>
     title: "%{instance} Användarvillkor och Sekretesspolicy"
   themes:
-    default: Mastodon
+    default: Chitter
+    classic: Classic
   time:
     formats:
       default: "%b %d, %Y, %H:%M"

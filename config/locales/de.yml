@@ -518,7 +518,8 @@ de:
     reblogged: teilte
     sensitive_content: Heikle Inhalte
   themes:
-    default: Mastodon
+    default: Chitter
+    classic: Classic
   time:
     formats:
       default: "%d.%m.%Y %H:%M"
