@@ -520,6 +520,7 @@ ko:
     title: "%{instance} 이용약관과 개인정보 취급 방침"
   themes:
     default: Chitter
+    bright: Chitter Bright
     classic: Classic
   time:
     formats:

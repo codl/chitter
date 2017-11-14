@@ -667,6 +667,7 @@ oc:
     title: Condicions d’utilizacion e politica de confidencialitat de %{instance}
   themes:
     default: Chitter
+    bright: Chitter Bright
     classic: Classic
   time:
     formats:

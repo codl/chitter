@@ -589,6 +589,7 @@ fa:
     title: شرایط استفاده و سیاست رازداری %{instance}
   themes:
     default: Chitter
+    bright: Chitter Bright
     classic: Classic
   time:
     formats:

@@ -589,6 +589,7 @@ pt-BR:
     title: "%{instance} Termos de Serviço e Política de Privacidade"
   themes:
     default: Chitter
+    bright: Chitter Bright
     classic: Classic
   time:
     formats:

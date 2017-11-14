@@ -589,6 +589,7 @@ fr:
     title: "%{instance} Conditions d’utilisations et politique de confidentialité"
   themes:
     default: Chitter
+    bright: Chitter Bright
     classic: Classic
   time:
     formats:

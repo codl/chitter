@@ -1,2 +1,3 @@
 default: styles/chitter.scss
+bright: styles/chitter-bright.scss
 classic: styles/chitter-classic.scss

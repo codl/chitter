@@ -589,6 +589,7 @@ ja:
     title: "%{instance} 利用規約・プライバシーポリシー"
   themes:
     default: Chitter
+    bright: Chitter Bright
     classic: Classic
   time:
     formats:

@@ -594,6 +594,7 @@ pl:
     title: Zasady korzystania i polityka prywatności %{instance}
   themes:
     default: Chitter
+    bright: Chitter Bright
     classic: Classic
   time:
     formats:

@@ -589,6 +589,7 @@ nl:
     title: "%{instance} Terms of Service and Privacy Policy"
   themes:
     default: Chitter
+    bright: Chitter Bright
     classic: Classic
   time:
     formats:

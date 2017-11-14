@@ -1,0 +1,150 @@
+$ui-base-color: #eee;
+$ui-base-lighter-color: #aaa;
+$primary-text-color: black;
+$ui-primary-color: #717;
+$ui-secondary-color: #505;
+$ui-highlight-color: #e77fea;
+
+@import 'chitter-common.scss';
+
+.autosuggest-textarea__textarea, .spoiler-input__input {
+  color: black;
+
+  &::placeholder {
+    color: #666;
+  }
+}
+
+.drawer__inner {
+  background-color: $ui-primary-color;
+  color: $ui-base-lighter-color;
+
+  .navigation-bar {
+    color: lighten($ui-primary-color, 50%);
+  }
+  .navigation-bar strong {
+    color: white;
+  }
+  .character-counter {
+    color: white;
+  }
+}
+
+.compose-form__buttons, .reply-indicator {
+  background-color: rgba(255,255,255,0.4);
+}
+
+.compose-form__publish-button-wrapper button {
+  background-color: rgba(255,255,255,0.7);
+  &:focus, &:hover, &:active {
+    background-color: white;
+  }
+}
+
+.compose-form__upload-description::placeholder {
+  color: rgba(255,255,255,0.4);
+}
+
+.privacy-dropdown__dropdown {
+  background-color: $ui-primary-color;
+}
+
+.privacy-dropdown__option__content {
+  color: inherit;
+}
+
+.compose-form__buttons .icon-button,
+.compose-form__buttons .text-icon-button {
+  &:hover, &:active, &:focus {
+    color: rgba(255,255,255, 0.7)
+  }
+  &.active, &.active.disabled {
+    color: black;
+  }
+}
+
+.emoji-mart-anchors {
+  color: rgba(255,255,255,0.4);
+}
+.emoji-mart-anchor:hover {
+  color: rgba(255,255,255,0.7);
+}
+
+.emoji-mart-anchor-selected {
+  color: white;
+}
+.emoji-mart-anchor-bar {
+  background-color: white;
+}
+
+.emoji-mart-category-label span {
+  color: $ui-base-lighter-color;
+}
+
+
+.column-back-button, .column-header__back-button {
+  color: $ui-primary-color;
+}
+
+.column > .scrollable {
+  background-color: #f0f0f0;
+}
+
+.empty-column-indicator, .error-column {
+  color: black;
+}
+
+
+.status {
+  border-bottom-color: rgba(0,0,0,0.3);
+}
+
+.status.status-direct {
+  background-color: rgba(0,0,0,0.1);
+}
+
+.status__content .status__content__spoiler-link,
+.reply-indicator__content .status__content__spoiler-link {
+  background-color: #666;
+  &:hover, &:active, &:focus {
+    background-color: #999;
+  }
+}
+.icon-button, .text-icon-button {
+  &:hover, &:active, &:focus {
+    color: #444;
+  }
+  &.active {
+    color: $ui-primary-color;
+  }
+  &.disabled {
+    color: #ddd;
+  }
+  &.overlayed {
+    background-color: rgba(255,255,255,0.7);
+    &:hover, &:active, &:focus {
+      background-color: rgba(255,255,255,0.7);
+    }
+  }
+}
+
+
+.getting-started a {
+  color: #222;
+}
+
+
+.onboarding-modal__paginator .onboarding-modal__nav,
+.error-modal__footer .error-modal__nav,
+.confirmation-modal__action-bar .confirmation-modal__cancel-button {
+  &, &:hover, &:focus, &:active {
+    color: rgba(255,255,255,0.7);
+  }
+}
+.onboarding-modal__dot {
+  background: rgba(255,255,255,0.7);
+}
+
+.onboarding-modal__dot.active {
+  background: white;
+}

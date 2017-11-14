@@ -589,6 +589,7 @@ sv:
     title: "%{instance} Användarvillkor och Sekretesspolicy"
   themes:
     default: Chitter
+    bright: Chitter Bright
     classic: Classic
   time:
     formats:

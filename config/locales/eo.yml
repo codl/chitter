@@ -425,6 +425,7 @@ eo:
     title: "%{instance} Reguloj de servo kaj Politikaj pri privatecoj"
   themes:
     default: Chitter
+    bright: Chitter Bright
     classic: Classic
   time:
     formats:

@@ -519,6 +519,7 @@ de:
     sensitive_content: Heikle Inhalte
   themes:
     default: Chitter
+    bright: Chitter Bright
     classic: Classic
   time:
     formats:
