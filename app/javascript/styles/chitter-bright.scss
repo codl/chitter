@@ -155,6 +155,8 @@ $ui-highlight-color: #e77fea;
 .activity-stream .status.light .display-name strong,
 .activity-stream .detailed-status.light .detailed-status__display-name .display-name strong,
 .activity-stream .status.light .status__content,
-.activity-stream .detailed-status.light .status__content {
+.activity-stream .detailed-status.light .status__content,
+.account-card .account__header__content,
+.account-card .detailed-status__display-name .display-name strong {
   color: black;
 }
