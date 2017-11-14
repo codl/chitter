@@ -103,8 +103,11 @@ $ui-highlight-color: #e77fea;
   background-color: rgba(0,0,0,0.1);
 }
 
+.activity-stream .status.light .status__content a.status__content__spoiler-link,
+.activity-stream .detailed_status.light .status__content a.status__content__spoiler-link,
 .status__content .status__content__spoiler-link,
 .reply-indicator__content .status__content__spoiler-link {
+  color: white;
   background-color: #666;
   &:hover, &:active, &:focus {
     background-color: #999;
@@ -147,4 +150,11 @@ $ui-highlight-color: #e77fea;
 
 .onboarding-modal__dot.active {
   background: white;
+}
+
+.activity-stream .status.light .display-name strong,
+.activity-stream .detailed-status.light .detailed-status__display-name .display-name strong,
+.activity-stream .status.light .status__content,
+.activity-stream .detailed-status.light .status__content {
+  color: black;
 }
