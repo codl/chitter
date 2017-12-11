@@ -297,4 +297,16 @@ class Account < ApplicationRecord
 
     self.domain = TagManager.instance.normalize_domain(domain)
   end
+
+  public
+
+  def display_name
+    val = super
+    pdfs = val.count "\u202A" "\u202B" "\u202d" "\u202e"
+    val + ("\u202c" * pdfs)
+  end
+
+  def display_name=(val)
+    super val.sub(/\u202c+$/, '')
+  end
 end
