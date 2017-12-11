@@ -14,9 +14,11 @@ class AmigaBall extends React.Component {
     this.offset = Math.random() * Math.PI/2;
     let tempButton = document.createElement('div');
     tempButton.classList.add('icon-button');
+    tempButton.classList.add('horrible-hack');
     tempButton.style.display = 'none';
     document.body.appendChild(tempButton);
     this.inactiveColor = getComputedStyle(tempButton).color;
+    this.inverted = getComputedStyle(tempButton).content == '"yes"';
     document.body.removeChild(tempButton);
   }
   componentDidMount(){
@@ -52,8 +54,16 @@ class AmigaBall extends React.Component {
     const width = this.refs.canvas.width;
     const height = this.refs.canvas.height;
     const padding = width/9;
+    let primary_color = 'white';
+    let secondary_color = 'red';
+    if(this.inverted){
+      let a = primary_color;
+      primary_color = secondary_color;
+      secondary_color = a;
+    }
     ctx.clearRect(0, 0, width, height);
-    ctx.fillStyle = `hsla(0, 100%, 50%, ${this.activated})`;
+    ctx.fillStyle = secondary_color;
+    ctx.globalAlpha = this.activated;
     ctx.beginPath();
     ctx.arc(width/2, height/2, width/2-padding-0.5, 0, 2 * Math.PI);
     ctx.fill();
@@ -121,7 +131,7 @@ class AmigaBall extends React.Component {
     }
     drawCheckerboard = drawCheckerboard.bind(this);
     drawCheckerboard(this.inactiveColor, 1);
-    drawCheckerboard('white', this.activated);
+    drawCheckerboard(primary_color, this.activated);
 
   }
 
