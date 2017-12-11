@@ -203,3 +203,18 @@ $ui-button-inactive-color: #444;
 ::-webkit-scrollbar-thumb:hover {
   background-color: darken($ui-base-lighter-color, 15%);
 }
+
+.react-toggle:hover {
+  transform: scale(1.05);
+}
+
+.react-toggle-track,
+.react-toggle:hover:not(.react-toggle--disabled) .react-toggle-track {
+  background-color: rgba(0,0,0,0.3);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.3);
+}
+
+.react-toggle--checked .react-toggle-track,
+.react-toggle--checked:hover:not(.react-toggle--disabled) .react-toggle-track {
+  background-color: $ui-primary-color;
+}
