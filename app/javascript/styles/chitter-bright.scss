@@ -158,6 +158,30 @@ $ui-button-inactive-color: #444;
   background: white;
 }
 
+.report-modal__container {
+  background-color: rgba(0,0,0,0.5);
+}
+
+.report-modal__container .status__content {
+  color: white;
+}
+
+.report-modal__container .status__content a {
+  color: desaturate(lighten($ui-secondary-color, 50%), 50%);
+}
+
+.report-modal__comment .setting-text.light {
+  border-bottom-color: rgba(255,255,255,0.4);
+}
+
+.report-modal__comment .setting-text.light:focus {
+  border-bottom-color: rgba(255,255,255,0.8);
+}
+
+.status-check-box {
+  border-bottom-color: rgba(255,255,255,0.3);
+}
+
 .activity-stream .status.light .display-name strong,
 .activity-stream .detailed-status.light .detailed-status__display-name .display-name strong,
 .activity-stream .status.light .status__content,
