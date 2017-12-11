@@ -7,10 +7,19 @@ class AmigaBall extends React.Component {
   };
 
 
-  componentDidMount(){
+  constructor(props){
+    super(props);
     this.bail=false;
     this.activated=this.props.active?1:0;
     this.offset = Math.random() * Math.PI/2;
+    let tempButton = document.createElement('div');
+    tempButton.classList.add('icon-button');
+    tempButton.style.display = 'none';
+    document.body.appendChild(tempButton);
+    this.inactiveColor = getComputedStyle(tempButton).color;
+    document.body.removeChild(tempButton);
+  }
+  componentDidMount(){
     this.frame(0)
   }
   frame(t) {
@@ -49,70 +58,72 @@ class AmigaBall extends React.Component {
     ctx.arc(width/2, height/2, width/2-padding-0.5, 0, 2 * Math.PI);
     ctx.fill();
 
-    function lin(start, end, progress){
-      return progress * end + (1-progress) * start;
-    }
-    // default inactive button color: hsl(225, 16%, 45%)
-    ctx.fillStyle = `hsl(
-        225,
-        ${lin(16, 0, this.activated)}%,
-        ${lin(45, 100, this.activated)}%)`;
-    ctx.beginPath();
-    ctx.moveTo(width/2, padding);
-    function go(theta,phi){
-        phi -= this.offset;
-        phi = Math.max(-Math.PI/2, phi);
-        phi = Math.min(Math.PI/2, phi);
-        let x = Math.sin(theta) * Math.sin(phi) * (width - 2*padding)/2 + width/2;
-        let y = -Math.cos(theta) * (height - 2*padding)/2 + height/2;
-        ctx.lineTo(x, y);
-    }
-    go = go.bind(this);
+    function drawCheckerboard(fillStyle, alpha){
+      // default inactive button color: hsl(225, 16%, 45%)
+      ctx.globalAlpha = alpha;
+      ctx.fillStyle = fillStyle;
+      ctx.beginPath();
+      ctx.moveTo(width/2, padding);
+      function go(theta,phi){
+          phi -= this.offset;
+          phi = Math.max(-Math.PI/2, phi);
+          phi = Math.min(Math.PI/2, phi);
+          let x = Math.sin(theta) * Math.sin(phi) * (width - 2*padding)/2 + width/2;
+          let y = -Math.cos(theta) * (height - 2*padding)/2 + height/2;
+          ctx.lineTo(x, y);
+      }
+      go = go.bind(this);
 
-    // vertical stripe 1
-    for(let theta = 0; theta <= Math.PI; theta+=Math.PI/6){
-        let phi = -Math.PI/2;
-        go(theta, phi);
-    }
-    for(let theta = Math.PI; theta >= 0; theta-=Math.PI/6){
-        let phi = -Math.PI/4;
-        go(theta, phi);
-    }
+      // vertical stripe 1
+      for(let theta = 0; theta <= Math.PI; theta+=Math.PI/6){
+          let phi = -Math.PI/2;
+          go(theta, phi);
+      }
+      for(let theta = Math.PI; theta >= 0; theta-=Math.PI/6){
+          let phi = -Math.PI/4;
+          go(theta, phi);
+      }
 
-    // vertical stripe 2
-    for(let theta = 0; theta <= Math.PI; theta+=Math.PI/6){
-        let phi = 0;
-        go(theta, phi);
-    }
-    for(let theta = Math.PI; theta >= 0; theta-=Math.PI/6){
-        let phi = Math.PI/4;
-        go(theta, phi);
-    }
+      // vertical stripe 2
+      for(let theta = 0; theta <= Math.PI; theta+=Math.PI/6){
+          let phi = 0;
+          go(theta, phi);
+      }
+      for(let theta = Math.PI; theta >= 0; theta-=Math.PI/6){
+          let phi = Math.PI/4;
+          go(theta, phi);
+      }
 
-    // vertical stripe 3
-    for(let theta = 0; theta <= Math.PI; theta+=Math.PI/6){
-        let phi = Math.PI/2;
-        go(theta, phi);
-    }
-    for(let theta = Math.PI; theta >= 0; theta-=Math.PI/6){
-        let phi = 3*Math.PI/4;
-        go(theta, phi);
-    }
+      // vertical stripe 3
+      for(let theta = 0; theta <= Math.PI; theta+=Math.PI/6){
+          let phi = Math.PI/2;
+          go(theta, phi);
+      }
+      for(let theta = Math.PI; theta >= 0; theta-=Math.PI/6){
+          let phi = 3*Math.PI/4;
+          go(theta, phi);
+      }
 
-    for(let tetha = 0; tetha <= 3*Math.PI/4; tetha += Math.PI/8){
-        let phi = Math.PI;
-        go(tetha, phi);
+      for(let tetha = 0; tetha <= 3*Math.PI/4; tetha += Math.PI/8){
+          let phi = Math.PI;
+          go(tetha, phi);
+      }
+
+      go(3*Math.PI/4, -Math.PI/2);
+      go(Math.PI/2, -Math.PI/2);
+      go(Math.PI/2, Math.PI);
+      go(Math.PI/4, Math.PI);
+      go(Math.PI/4, -Math.PI/2);
+
+      ctx.closePath();
+      ctx.fill();
+      ctx.globalAlpha = 1;
     }
+    drawCheckerboard = drawCheckerboard.bind(this);
+    drawCheckerboard(this.inactiveColor, 1);
+    drawCheckerboard('white', this.activated);
 
-    go(3*Math.PI/4, -Math.PI/2);
-    go(Math.PI/2, -Math.PI/2);
-    go(Math.PI/2, Math.PI);
-    go(Math.PI/4, Math.PI);
-    go(Math.PI/4, -Math.PI/2);
-
-    ctx.closePath();
-    ctx.fill();
-}
+  }
 
   componentWillUnmount(){
     this.bail = true;
