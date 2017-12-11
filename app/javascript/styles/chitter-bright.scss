@@ -166,3 +166,15 @@ $ui-button-inactive-color: #444;
 .account-card .detailed-status__display-name .display-name strong {
   color: black;
 }
+
+::-webkit-scrollbar-track {
+  background-color: $ui-base-color;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: $ui-base-lighter-color;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: darken($ui-base-lighter-color, 15%);
+}
