@@ -6,8 +6,20 @@ $ui-boost-color: $ui-highlight-color !default;
   text-transform: none;
 }
 
+.getting-started {
+  background-image: none;
+}
+
 .getting-started.static-content {
-  padding-bottom: 310px;
+  position: relative;
+}
+
+.getting-started .mascot-credit {
+  position: absolute;
+  bottom: 1em;
+  right: 1em;
+  margin: 0;
+  text-shadow: 0 0 2px rgba(0,0,0,0.8);
 }
 
 .landing-page .header-wrapper .mascot {

@@ -42,8 +42,23 @@ export default class GettingStarted extends ImmutablePureComponent {
     multiColumn: PropTypes.bool,
   };
 
+  componentDidMount () {
+    fetch('/mascots.json').then(response => response.json())
+      .then(mascots=>{
+        console.log("hello!!!!");
+        this.setState({mascot: mascots[Math.floor(Math.random()*mascots.length)]});
+      });
+  }
+
   render () {
     const { intl, me, columns, multiColumn } = this.props;
+
+    console.log("render")
+    if(! this.state){
+      console.log("no state")
+      this.state = {};
+    }
+    console.log(this.state)
 
     let navItems = [];
 
@@ -79,6 +94,14 @@ export default class GettingStarted extends ImmutablePureComponent {
       <ColumnLink key='8' icon='ban' text={intl.formatMessage(messages.blocks)} to='/blocks' />,
     ]);
 
+    let mascot_style = {};
+    if (this.state.mascot) {
+      mascot_style = {
+        backgroundImage: 'url('+this.state.mascot.url+')',
+        paddingBottom: this.state.mascot.height
+      };
+    }
+
     return (
       <Column icon='asterisk' heading={intl.formatMessage(messages.heading)} hideHeadingOnMobile>
         <div className='getting-started__wrapper'>
@@ -91,7 +114,7 @@ export default class GettingStarted extends ImmutablePureComponent {
         </div>
 
         <div className='getting-started__footer scrollable optionally-scrollable'>
-          <div className='static-content getting-started'>
+          <div className='static-content getting-started' style={mascot_style}>
             <p>
               <a href='https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/FAQ.md' rel='noopener' target='_blank'><FormattedMessage id='getting_started.faq' defaultMessage='FAQ' /></a> • <a href='https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/User-guide.md' rel='noopener' target='_blank'><FormattedMessage id='getting_started.userguide' defaultMessage='User Guide' /></a> • <a href='https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md' rel='noopener' target='_blank'><FormattedMessage id='getting_started.appsshort' defaultMessage='Apps' /></a>
             </p>
@@ -103,6 +126,9 @@ export default class GettingStarted extends ImmutablePureComponent {
                     github: <a href='https://github.com/codl/chitter' rel='noopener' target='_blank'>codl/chitter</a> }}
               />
             </p>
+            { this.state.mascot &&
+              <p className='mascot-credit'>Mascot by {this.state.mascot.credit}</p>
+            }
           </div>
         </div>
       </Column>
