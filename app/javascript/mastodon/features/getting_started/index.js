@@ -45,7 +45,6 @@ export default class GettingStarted extends ImmutablePureComponent {
   componentDidMount () {
     fetch('/mascots.json').then(response => response.json())
       .then(mascots=>{
-        console.log("hello!!!!");
         this.setState({mascot: mascots[Math.floor(Math.random()*mascots.length)]});
       });
   }
@@ -53,12 +52,9 @@ export default class GettingStarted extends ImmutablePureComponent {
   render () {
     const { intl, me, columns, multiColumn } = this.props;
 
-    console.log("render")
     if(! this.state){
-      console.log("no state")
       this.state = {};
     }
-    console.log(this.state)
 
     let navItems = [];
 
