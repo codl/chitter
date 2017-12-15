@@ -6,6 +6,7 @@ import DropdownMenuContainer from '../../../containers/dropdown_menu_container';
 import { defineMessages, injectIntl } from 'react-intl';
 import { hasAmiga } from '../../../amiga';
 import AmigaBall from '../../../components/amigaball';
+import { me } from '../../../initial_state';
 
 const messages = defineMessages({
   delete: { id: 'status.delete', defaultMessage: 'Delete' },
@@ -38,7 +39,6 @@ export default class ActionBar extends React.PureComponent {
     onReport: PropTypes.func,
     onPin: PropTypes.func,
     onEmbed: PropTypes.func,
-    me: PropTypes.string.isRequired,
     intl: PropTypes.object.isRequired,
   };
 
@@ -82,7 +82,7 @@ export default class ActionBar extends React.PureComponent {
   }
 
   render () {
-    const { status, me, intl } = this.props;
+    const { status, intl } = this.props;
 
     const publicStatus = ['public', 'unlisted'].includes(status.get('visibility'));
 
@@ -138,7 +138,7 @@ export default class ActionBar extends React.PureComponent {
         </div>
 
         <div className='detailed-status__action-bar-dropdown'>
-          <DropdownMenuContainer size={18} icon='ellipsis-h' items={menu} direction='left' ariaLabel='More' />
+          <DropdownMenuContainer size={18} icon='ellipsis-h' items={menu} direction='left' title='More' />
         </div>
       </div>
     );
