@@ -57,6 +57,10 @@ class Rack::Attack
     req.ip if req.post? && req.path =~ PROTECTED_PATHS_REGEX
   end
 
+  throttle('throttle_unauthenticated_public_tl', limit: 5, period: 1.minutes) do |req|
+    req.ip if req.unauthenticated? && req.path == "/api/v1/timelines/public"
+  end
+
   self.throttled_response = lambda do |env|
     now        = Time.now.utc
     match_data = env['rack.attack.match_data']
