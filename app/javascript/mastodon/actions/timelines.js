@@ -140,7 +140,7 @@ export function expandTimeline(timelineId, path, params = {}) {
     }
 
     params.max_id = ids.last();
-    params.limit  = 10;
+    params.limit  = params.limit || 10;
 
     dispatch(expandTimelineRequest(timelineId));
 
@@ -156,7 +156,7 @@ export function expandTimeline(timelineId, path, params = {}) {
 export const expandHomeTimeline         = () => expandTimeline('home', '/api/v1/timelines/home');
 export const expandPublicTimeline       = () => expandTimeline('public', '/api/v1/timelines/public');
 export const expandCommunityTimeline    = () => expandTimeline('community', '/api/v1/timelines/public', { local: true });
-export const expandAccountTimeline      = accountId => expandTimeline(`account:${accountId}`, `/api/v1/accounts/${accountId}/statuses`);
+export const expandAccountTimeline      = accountId => expandTimeline(`account:${accountId}`, `/api/v1/accounts/${accountId}/statuses`, {limit: 40});
 export const expandAccountMediaTimeline = accountId => expandTimeline(`account:${accountId}:media`, `/api/v1/accounts/${accountId}/statuses`, { only_media: true });
 export const expandHashtagTimeline      = hashtag => expandTimeline(`hashtag:${hashtag}`, `/api/v1/timelines/tag/${hashtag}`);
 export const expandListTimeline         = id => expandTimeline(`list:${id}`, `/api/v1/timelines/list/${id}`);
