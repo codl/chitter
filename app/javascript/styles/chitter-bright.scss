@@ -33,6 +33,10 @@ $ui-button-inactive-color: #444;
   }
 }
 
+.list-editor .drawer__inner {
+  background-color: $ui-base-color;
+}
+
 .compose-form .compose-form__buttons-wrapper,
 .reply-indicator {
   background-color: rgba(255,255,255,0.4);
@@ -45,9 +49,13 @@ $ui-button-inactive-color: #444;
   }
 }
 
-.compose-form__upload-description::placeholder {
-  color: rgba(255,255,255,0.4);
+.compose-form .compose-form__modifiers .compose-form__upload-description input {
+  color: white;
+  &::placeholder {
+    color: white;
+  }
 }
+
 
 .privacy-dropdown__dropdown {
   background-color: $ui-primary-color;
@@ -67,7 +75,7 @@ $ui-button-inactive-color: #444;
   }
 }
 
-.compose-form__warning {
+.compose-form .compose-form__warning {
   background: rgba(255,255,255, 0.7);
 }
 
@@ -227,4 +235,44 @@ $ui-button-inactive-color: #444;
 
 .icon-button.horrible-hack {
   content: "yes"
+}
+
+
+
+.card .card__bio {
+  background-color: rgba(255,255,255,0.9);
+  mix-blend-mode: luminosity;
+}
+
+.card::after {
+  mix-blend-mode: color;
+  opacity: 0.4;
+  background-image: linear-gradient(0deg, $ui-primary-color, transparent);
+}
+
+.card .counter.active::after {
+  border-bottom-color: black;
+}
+.card .counter::after {
+  border-bottom-color: gray;
+}
+
+.accounts-grid .account-grid-card {
+  background-color: desaturate($ui-secondary-color, 70%);
+}
+
+.activity-stream-tabs a {
+  color: inherit;
+  &:hover, &:active, &:focus {
+    color: inherit;
+    text-decoration: underline;
+  }
+  &.active {
+    color: white;
+    background-color: $ui-primary-color;
+  }
+}
+
+.search-popout em {
+  color: black;
 }
