@@ -115,37 +115,21 @@ export default class GettingStarted extends ImmutablePureComponent {
           <ColumnLink icon='sign-out' text={intl.formatMessage(messages.sign_out)} href='/auth/sign_out' method='delete' />
         </div>
 
-<<<<<<< HEAD
-        <div className='getting-started__footer scrollable optionally-scrollable'>
-          <div className='static-content getting-started' style={mascot_style}>
-            <p>
-              <a href='https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/FAQ.md' rel='noopener' target='_blank'><FormattedMessage id='getting_started.faq' defaultMessage='FAQ' /></a> • <a href='https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/User-guide.md' rel='noopener' target='_blank'><FormattedMessage id='getting_started.userguide' defaultMessage='User Guide' /></a> • <a href='https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md' rel='noopener' target='_blank'><FormattedMessage id='getting_started.appsshort' defaultMessage='Apps' /></a>
-            </p>
-            <p>
-              <FormattedMessage
-                id='getting_started.open_source_notice_chitter'
-                defaultMessage='Chitter is open source software based on {mastodon}. Source code can be found at at {github}.'
-                values={{ mastodon: <a href='https://github.com/tootsuite/mastodon' rel='noopener' target='_blank'>Mastodon</a>,
-                    github: <a href='https://github.com/codl/chitter' rel='noopener' target='_blank'>codl/chitter</a> }}
-              />
-            </p>
-            { this.state.mascot &&
-              <p className='mascot-credit'>Mascot by {this.state.mascot.credit}</p>
-            }
-          </div>
-=======
-        <div className='static-content getting-started'>
+        <div className='static-content getting-started' style={mascot_style}>
           <p>
             <a href='https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/FAQ.md' rel='noopener' target='_blank'><FormattedMessage id='getting_started.faq' defaultMessage='FAQ' /></a> • <a href='https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/User-guide.md' rel='noopener' target='_blank'><FormattedMessage id='getting_started.userguide' defaultMessage='User Guide' /></a> • <a href='https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md' rel='noopener' target='_blank'><FormattedMessage id='getting_started.appsshort' defaultMessage='Apps' /></a>
           </p>
           <p>
             <FormattedMessage
-              id='getting_started.open_source_notice'
-              defaultMessage='Mastodon is open source software. You can contribute or report issues on GitHub at {github}.'
-              values={{ github: <a href='https://github.com/tootsuite/mastodon' rel='noopener' target='_blank'>tootsuite/mastodon</a> }}
+              id='getting_started.open_source_notice_chitter'
+              defaultMessage='Chitter is open source software based on {mastodon}. Source code can be found at at {github}.'
+              values={{ mastodon: <a href='https://github.com/tootsuite/mastodon' rel='noopener' target='_blank'>Mastodon</a>,
+                  github: <a href='https://github.com/codl/chitter' rel='noopener' target='_blank'>codl/chitter</a> }}
             />
           </p>
->>>>>>> v2.1.1
+          { this.state.mascot &&
+            <p className='mascot-credit'>Mascot by {this.state.mascot.credit}</p>
+          }
         </div>
       </Column>
     );
