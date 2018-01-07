@@ -26,6 +26,9 @@ $ui-button-inactive-color: lighten($ui-base-color, 33%) !default;
   position: relative;
   background-repeat: no-repeat;
   background-position: bottom left;
+  a {
+    color: inherit;
+  }
 }
 
 .drawer__inner {
