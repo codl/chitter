@@ -7,23 +7,27 @@ $ui-button-inactive-color: lighten($ui-base-color, 33%) !default;
   text-transform: none;
 }
 
-.getting-started {
-  background-image: none;
+.landing-page .header-wrapper .mascot {
+  bottom: -16px;
+  left: 90px;
 }
 
-.getting-started.static-content {
-  position: relative;
-}
-
-.getting-started .mascot-credit {
+.mascot .mascot-credit {
   position: absolute;
   bottom: 1em;
   right: 1em;
   margin: 0;
-  text-shadow: 0 0 2px rgba(0,0,0,0.8);
+  text-shadow: 0 0 5px black;
+  color: white;
 }
 
-.landing-page .header-wrapper .mascot {
-  bottom: -16px;
-  left: 90px;
+.drawer__inner > .mascot {
+  flex: 1;
+  position: relative;
+  background-repeat: no-repeat;
+  background-position: bottom left;
+}
+
+.drawer__inner {
+  background-image: none;
 }
