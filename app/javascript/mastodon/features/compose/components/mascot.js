@@ -10,17 +10,17 @@ export default class Mascot extends React.Component {
   constructor () {
     super();
     this.state = {mascot: null};
-    this.go_to_credit = this.go_to_credit.bind(this);
+    this.handleCreditClick = this.handleCreditClick.bind(this);
   }
 
   componentDidMount () {
-    fetch('https://media.chitter.xyz/mascots/mascots.json?2').then(response => response.json())
+    fetch('https://media.chitter.xyz/mascots/mascots.json?4').then(response => response.json())
       .then(mascots=>{
         this.setState({mascot: mascots[Math.floor(Math.random()*mascots.length)]});
       });
   }
 
-  go_to_credit (e) {
+  handleCreditClick (e) {
     if (!this.state.mascot || !this.state.mascot.credit || !this.state.mascot.credit.account_id ||
         e.button !== 0){
       return
@@ -33,14 +33,19 @@ export default class Mascot extends React.Component {
     if (!this.state.mascot) {
       return false
     }
+    let mascot = this.state.mascot;
     let mascot_style = {
-      backgroundImage: 'url('+this.state.mascot.url+')'
+      backgroundImage: 'url('+mascot.url+')'
     };
+    if (mascot.height){
+      mascot_style.minHeight = `${mascot.height}px`;
+    }
 
-    let credit = this.state.mascot.credit.name;
-    if (this.state.mascot.credit.url){
-      credit = <a href={this.state.mascot.credit.url} onClick={this.go_to_credit}>
-        {this.state.mascot.credit.name}
+    let credit = mascot.credit.name;
+
+    if (mascot.credit.url){
+      credit = <a href={mascot.credit.url} onClick={this.handleCreditClick}>
+        {mascot.credit.name}
       </a>
     }
 
