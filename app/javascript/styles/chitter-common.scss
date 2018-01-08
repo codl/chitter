@@ -21,6 +21,10 @@ $ui-button-inactive-color: lighten($ui-base-color, 33%) !default;
   color: white;
 }
 
+.drawer__inner:first-child {
+  isolation: isolate;
+}
+
 .drawer__inner > .compose-form {
   z-index: 10;
 }
