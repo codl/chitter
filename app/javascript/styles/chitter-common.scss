@@ -25,6 +25,10 @@ $ui-button-inactive-color: lighten($ui-base-color, 33%) !default;
   z-index: 10;
 }
 
+.privacy-dropdown__dropdown {
+  z-index: 20;
+}
+
 .drawer__inner > .spacer {
   flex: 1;
 }
