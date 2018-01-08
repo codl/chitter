@@ -21,11 +21,21 @@ $ui-button-inactive-color: lighten($ui-base-color, 33%) !default;
   color: white;
 }
 
-.drawer__inner > .mascot {
+.drawer__inner > .compose-form {
+  z-index: 10;
+}
+
+.drawer__inner > .spacer {
   flex: 1;
+}
+
+.drawer__inner > .mascot {
+  z-index: 0;
+  flex: 0 1;
   position: relative;
   background-repeat: no-repeat;
   background-position: bottom left;
+  background-size: contain;
   a {
     color: inherit;
   }

@@ -14,7 +14,7 @@ export default class Mascot extends React.Component {
   }
 
   componentDidMount () {
-    fetch('https://media.chitter.xyz/mascots/mascots.json?4').then(response => response.json())
+    fetch('https://media.chitter.xyz/mascots/mascots.json?7').then(response => response.json())
       .then(mascots=>{
         this.setState({mascot: mascots[Math.floor(Math.random()*mascots.length)]});
       });
@@ -38,7 +38,10 @@ export default class Mascot extends React.Component {
       backgroundImage: 'url('+mascot.url+')'
     };
     if (mascot.height){
-      mascot_style.minHeight = `${mascot.height}px`;
+      mascot_style.flexBasis = `${mascot.height}px`;
+    }
+    if (mascot.style){
+        mascot_style = { ...mascot_style, ...mascot.style }
     }
 
     let credit = mascot.credit.name;

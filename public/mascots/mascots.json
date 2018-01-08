@@ -2,6 +2,9 @@
   {
     "url": "https://media.chitter.xyz/mascots/danfoxx.png",
     "height": 310,
+    "style": {
+      "marginTop": "-40px"
+    },
     "credit": {
       "url": "https://chitter.xyz/@Danfoxx",
       "name": "Dan Foxx",
