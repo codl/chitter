@@ -14,10 +14,18 @@ export default class Mascot extends React.Component {
   }
 
   componentDidMount () {
-    fetch('https://media.chitter.xyz/mascots/mascots.json?7').then(response => response.json())
-      .then(mascots=>{
-        this.setState({mascot: mascots[Math.floor(Math.random()*mascots.length)]});
-      });
+    let mascotP = fetch('https://media.chitter.xyz/mascots/mascots.json?14').then(response => response.json())
+      .then(mascots => mascots[Math.floor(Math.random()*mascots.length)]);
+    let blobP = mascotP.then(mascot => fetch(mascot.url)).then(resp => resp.blob());
+    Promise.all([mascotP, blobP]).then(a => {
+      let mascot = a[0];
+      let blob = a[1];
+
+      mascot.url = URL.createObjectURL(blob)
+      console.log(mascot);
+
+      this.setState({mascot: mascot});
+    });
   }
 
   handleCreditClick (e) {
