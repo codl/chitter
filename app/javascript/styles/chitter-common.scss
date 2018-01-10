@@ -12,15 +12,6 @@ $ui-button-inactive-color: lighten($ui-base-color, 33%) !default;
   left: 90px;
 }
 
-.mascot .mascot-credit {
-  position: absolute;
-  bottom: 1em;
-  right: 1em;
-  margin: 0;
-  text-shadow: 0 0 5px black;
-  color: white;
-}
-
 .drawer__inner:first-child {
   isolation: isolate;
 }
@@ -44,9 +35,19 @@ $ui-button-inactive-color: lighten($ui-base-color, 33%) !default;
   background-repeat: no-repeat;
   background-position: bottom left;
   background-size: contain;
+  min-height: 10em;
   a {
     color: inherit;
   }
+}
+
+.mascot .mascot-credit {
+  position: absolute;
+  bottom: 1em;
+  right: 1em;
+  margin: 0;
+  text-shadow: 0 0 5px black;
+  color: white;
 }
 
 .drawer__inner {
