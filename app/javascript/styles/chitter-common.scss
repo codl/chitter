@@ -53,3 +53,10 @@ $ui-button-inactive-color: lighten($ui-base-color, 33%) !default;
 .drawer__inner {
   background-image: none;
 }
+
+@media screen and (min-width: 631px) {
+  body.wide-columns .column {
+    max-width: 40em;
+    flex: 1 0 30em;
+  }
+}

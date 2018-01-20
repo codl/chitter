@@ -27,6 +27,7 @@ class UserSettingsDecorator
     user.settings['system_font_ui']      = system_font_ui_preference if change?('setting_system_font_ui')
     user.settings['noindex']             = noindex_preference if change?('setting_noindex')
     user.settings['theme']               = theme_preference if change?('setting_theme')
+    user.settings['wide_columns']        = wide_columns_preference if change?('setting_wide_columns')
   end
 
   def merged_notification_emails
@@ -75,6 +76,10 @@ class UserSettingsDecorator
 
   def theme_preference
     settings['setting_theme']
+  end
+
+  def wide_columns_preference
+    boolean_cast_setting 'setting_wide_columns'
   end
 
   def boolean_cast_setting(key)
