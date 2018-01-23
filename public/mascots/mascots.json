@@ -12,11 +12,11 @@
     }
   },
   {
-    "url": "https://media.chitter.xyz/mascots/fcard.png?3",
-    "height": 310,
+    "url": "https://media.chitter.xyz/mascots/fcard.png?9",
+    "height": 450,
     "style": {
       "marginTop": "-40px",
-      "marginLeft": "-30px"
+      "backgroundPosition": "bottom center"
     },
     "credit": {
       "url": "https://chitter.xyz/@fcard",
