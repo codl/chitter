@@ -22,7 +22,6 @@ export default class Mascot extends React.Component {
       let blob = a[1];
 
       mascot.url = URL.createObjectURL(blob)
-      console.log(mascot);
 
       this.setState({mascot: mascot});
     });
