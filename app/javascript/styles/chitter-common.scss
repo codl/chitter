@@ -46,8 +46,14 @@ $ui-button-inactive-color: lighten($ui-base-color, 33%) !default;
   bottom: 1em;
   right: 1em;
   margin: 0;
-  text-shadow: 0 0 5px black;
+  text-shadow:
+    -1px -1px 0 black,
+     1px -1px 0 black,
+    -1px  1px 0 black,
+     1px  1px 0 black
+  ;
   color: white;
+  opacity: 0.8;
 }
 
 .drawer__inner {
