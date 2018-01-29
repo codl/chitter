@@ -276,3 +276,9 @@ $ui-button-inactive-color: #444;
 .search-popout em {
   color: black;
 }
+
+.regeneration-indicator,
+.regeneration-indicator__label strong
+{
+  color: desaturate(darken($ui-secondary-color, 10%), 50%);
+}
