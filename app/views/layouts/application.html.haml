@@ -33,7 +33,7 @@
 
   %body{ class: add_rtl_body_class(body_classes) }
     = content_for?(:content) ? yield(:content) : yield
-    %svg(style="display: none;")
+    %svg(style="position:absolute; width:0; height:0;")
       %defs
         %filter#purple-shades
           %fecolormatrix{:type => "matrix", :values => ".8 .1 .2 0 0, .3 .4 .3 0 0, .2 .1 .8 0 0, 0 0 0 1 0"}
