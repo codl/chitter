@@ -29,6 +29,14 @@
   - body_classes += ' system-font' if current_account&.user&.setting_system_font_ui
   - body_classes += current_account&.user&.setting_reduce_motion ? ' reduce-motion' : ' no-reduce-motion'
   - body_classes += ' wide-columns' if current_account&.user&.setting_wide_columns
+  - body_classes += ' purple-shades' if current_account&.user&.setting_purple_shades
 
   %body{ class: add_rtl_body_class(body_classes) }
     = content_for?(:content) ? yield(:content) : yield
+    %svg(style="display: none;")
+      %defs
+        %filter#purple-shades
+          %fecolormatrix{:type => "matrix", :values => ".8 .1 .2 0 0, .3 .4 .3 0 0, .2 .1 .8 0 0, 0 0 0 1 0"}
+          %fecomponenttransfer
+            %fefuncg{:tablevalues => "0 .1 .3 .75 1", :type => "table"}
+            %fefuncb{:tablevalues => "0 .55 1", :type => "table"}

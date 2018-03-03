@@ -28,6 +28,7 @@ class UserSettingsDecorator
     user.settings['noindex']             = noindex_preference if change?('setting_noindex')
     user.settings['theme']               = theme_preference if change?('setting_theme')
     user.settings['wide_columns']        = wide_columns_preference if change?('setting_wide_columns')
+    user.settings['purple_shades']       = purple_shades_preference if change?('setting_purple_shades')
   end
 
   def merged_notification_emails
@@ -80,6 +81,10 @@ class UserSettingsDecorator
 
   def wide_columns_preference
     boolean_cast_setting 'setting_wide_columns'
+  end
+
+  def purple_shades_preference
+    boolean_cast_setting 'setting_purple_shades'
   end
 
   def boolean_cast_setting(key)

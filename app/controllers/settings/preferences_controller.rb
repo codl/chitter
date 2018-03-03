@@ -44,6 +44,7 @@ class Settings::PreferencesController < ApplicationController
       :setting_noindex,
       :setting_theme,
       :setting_wide_columns,
+      :setting_purple_shades,
       notification_emails: %i(follow follow_request reblog favourite mention digest),
       interactions: %i(must_be_follower must_be_following)
     )

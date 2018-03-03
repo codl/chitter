@@ -66,3 +66,7 @@ $ui-button-inactive-color: lighten($ui-base-color, 33%) !default;
     flex: 1 0 30em;
   }
 }
+
+body.purple-shades {
+  filter: url('#purple-shades');
+}

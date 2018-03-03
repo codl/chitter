@@ -50,6 +50,7 @@ defaults: &defaults
   activity_api_enabled: true
   peers_api_enabled: true
   wide_columns: false
+  purple_shades: false
 development:
   <<: *defaults
 
