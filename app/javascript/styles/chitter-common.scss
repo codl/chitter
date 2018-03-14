@@ -2,6 +2,7 @@ $ui-boost-color: $ui-highlight-color !default;
 $ui-button-inactive-color: lighten($ui-base-color, 33%) !default;
 
 @import 'application.scss';
+@import 'metadata.scss';
 
 .compose-form .button {
   text-transform: none;

@@ -5,6 +5,7 @@ class REST::AccountSerializer < ActiveModel::Serializer
 
   attributes :id, :username, :acct, :display_name, :locked, :created_at,
              :note, :url, :avatar, :avatar_static, :header, :header_static,
+             :x_metadata, :x_note_without_metadata,
              :followers_count, :following_count, :statuses_count
 
   has_one :moved_to_account, key: :moved, serializer: REST::AccountSerializer, if: :moved_and_not_nested?
@@ -39,5 +40,17 @@ class REST::AccountSerializer < ActiveModel::Serializer
 
   def moved_and_not_nested?
     object.moved? && object.moved_to_account.moved_to_account_id.nil?
+  end
+
+  def note_and_metadata
+    @note_and_metadata ||= FrontmatterHandler.instance.process_bio note
+  end
+
+  def x_metadata
+    note_and_metadata[:metadata]
+  end
+
+  def x_note_without_metadata
+    note_and_metadata[:text]
   end
 end
