@@ -160,7 +160,7 @@ export default class Header extends ImmutablePureComponent {
         </div>
       </div>
 
-      {metadata.length && (
+      {!!metadata.length && (
         <table className='account__metadata'>
           <tbody>
             {metadata.map((row, i) => (
