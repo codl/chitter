@@ -1,4 +1,5 @@
 import React from 'react';
+import is_birthday from '../is_birthday';
 
 // ✨ magic constants ✨
 const FRICTION = 2e-2;
@@ -88,7 +89,7 @@ export default class ConfettiOverlay extends React.Component {
   }
 
   should_show() {
-    return this.props.status_content.match(/[🎉🎊]/);
+    return this.props.status_content.match(/[🎉🎊]/) && is_birthday();
   }
 
   componentDidMount(){
