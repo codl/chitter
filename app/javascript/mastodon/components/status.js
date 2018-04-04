@@ -14,6 +14,8 @@ import { MediaGallery, Video } from '../features/ui/util/async-components';
 import { HotKeys } from 'react-hotkeys';
 import classNames from 'classnames';
 
+import ConfettiOverlay from './confetti_overlay';
+
 // We use the component (and not the container) since we do not want
 // to use the progress bar to show download progress
 import Bundle from '../features/ui/components/bundle';
@@ -248,6 +250,7 @@ export default class Status extends ImmutablePureComponent {
 
             <StatusActionBar status={status} account={account} {...other} />
           </div>
+          <ConfettiOverlay status_content={status.get('content')} />
         </div>
       </HotKeys>
     );

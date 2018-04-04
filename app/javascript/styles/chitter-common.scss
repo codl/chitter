@@ -71,3 +71,16 @@ $ui-button-inactive-color: lighten($ui-base-color, 33%) !default;
 body.purple-shades {
   filter: url('#purple-shades');
 }
+
+.confetti-overlay {
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.status__wrapper, .detailed-status {
+  position: relative;
+  overflow: hidden;
+  // this prevents the confetti overlay from escaping
+}
