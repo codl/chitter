@@ -126,7 +126,7 @@ export default class DetailedStatus extends ImmutablePureComponent {
             </span>
           </Link>
         </div>
-        <ConfettiOverlay status_content={status.get('content')} />
+        <ConfettiOverlay status={status} />
       </div>
     );
   }

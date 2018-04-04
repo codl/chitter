@@ -1,5 +1,4 @@
 import React from 'react';
-import is_birthday from '../is_birthday';
 
 // ✨ magic constants ✨
 const FRICTION = 2e-2;
@@ -10,6 +9,18 @@ const CANNON_MIN = 10;
 const CANNON_MAX = 50;
 
 const MAX_PARTICLES = 64;
+
+// note: months start at 0 in javascript because, fuck if i know
+const BIRTHDAY = new Date(Date.UTC(2017, 3, 10, 6, 0));
+const BIRTHDAY_TOLERANCE = 24*60*60*1000;
+
+function is_birthday(date){
+  date = new Date(date);
+  const birthday = new Date(BIRTHDAY);
+  birthday.setUTCFullYear(date.getUTCFullYear());
+  return +date > +birthday && +date < +birthday + BIRTHDAY_TOLERANCE;
+  // the weird use of unary + is to cast the dates to numbers
+}
 
 function clamp(n, bot, top){
   return Math.min(top, Math.max(bot, n));
@@ -89,7 +100,10 @@ export default class ConfettiOverlay extends React.Component {
   }
 
   should_show() {
-    return this.props.status_content.match(/[🎉🎊]/) && is_birthday();
+    return (
+      this.props.status.get('content').match(/[🎉🎊]/) &&
+      is_birthday(this.props.status.get('created_at'))
+    );
   }
 
   componentDidMount(){

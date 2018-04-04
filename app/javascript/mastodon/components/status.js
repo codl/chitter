@@ -250,7 +250,7 @@ export default class Status extends ImmutablePureComponent {
 
             <StatusActionBar status={status} account={account} {...other} />
           </div>
-          <ConfettiOverlay status_content={status.get('content')} />
+          <ConfettiOverlay status={status} />
         </div>
       </HotKeys>
     );
