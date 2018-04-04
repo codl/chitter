@@ -174,10 +174,8 @@ export default class ConfettiOverlay extends React.Component {
       if(entry.target == this.container){
         if(this.halted && entry.isIntersecting){
           requestAnimationFrame(this.frame);
-          console.log('resuming');
           this.halted = !this.halted;
         } else if(!this.halted && !entry.isIntersecting) {
-          console.log('halting');
           this.halted = !this.halted;
         }
       }
@@ -194,7 +192,6 @@ export default class ConfettiOverlay extends React.Component {
       this.canvas.height !== container_height){
       this.canvas.width = container_width;
       this.canvas.height = container_height;
-      console.log('resized', this.canvas.width, this.canvas.height);
     }
   }
 
