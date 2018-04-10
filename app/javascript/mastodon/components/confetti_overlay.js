@@ -118,7 +118,7 @@ export default class ConfettiOverlay extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState){
-    if(this.status_content !== prevProps.status_content){
+    if(this.status !== prevProps.status){
       if(this.should_show()){
         this.setup()
         if(!this.started){
