@@ -9,6 +9,9 @@ const CANNON_MIN = 10;
 const CANNON_MAX = 50;
 
 const MAX_PARTICLES = 64;
+const MIN_PARTICLES = 8;
+
+const PARTICLE_DELETE_PROBABILITY = 1;
 
 // note: months start at 0 in javascript because, fuck if i know
 const BIRTHDAY = new Date(Date.UTC(2017, 3, 10, 6, 0));
@@ -249,6 +252,14 @@ export default class ConfettiOverlay extends React.Component {
           particle.dead = true;
         }
       }
+    }
+
+    // delete particles over time
+    if((Math.random() / PARTICLE_DELETE_PROBABILITY < dt
+      // delete a particle if we drop a frame
+        || dt > 0.017)
+        && this.particles.length > MIN_PARTICLES){
+      this.particles.pop();
     }
   }
 
