@@ -104,7 +104,7 @@ export default class ConfettiOverlay extends React.Component {
 
   should_show() {
     return (
-      this.props.status.get('content').match(/[🎉🎊]/) &&
+      this.props.status.get('content').match(/🎉|🎊/) &&
       is_birthday(this.props.status.get('created_at'))
     );
   }
