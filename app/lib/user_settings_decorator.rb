@@ -28,6 +28,7 @@ class UserSettingsDecorator
     user.settings['system_font_ui']          = system_font_ui_preference if change?('setting_system_font_ui')
     user.settings['noindex']                 = noindex_preference if change?('setting_noindex')
     user.settings['theme']                   = theme_preference if change?('setting_theme')
+    user.settings['hide_network']            = hide_network_preference if change?('setting_hide_network')
     user.settings['wide_columns']            = wide_columns_preference if change?('setting_wide_columns')
     user.settings['purple_shades']           = purple_shades_preference if change?('setting_purple_shades')
   end
@@ -80,6 +81,10 @@ class UserSettingsDecorator
     boolean_cast_setting 'setting_noindex'
   end
 
+  def hide_network_preference
+    boolean_cast_setting 'setting_hide_network'
+  end
+
   def theme_preference
     settings['setting_theme']
   end
@@ -93,7 +98,7 @@ class UserSettingsDecorator
   end
 
   def boolean_cast_setting(key)
-    settings[key] == '1'
+    ActiveModel::Type::Boolean.new.cast(settings[key])
   end
 
   def coerced_settings(key)
@@ -101,7 +106,7 @@ class UserSettingsDecorator
   end
 
   def coerce_values(params_hash)
-    params_hash.transform_values { |x| x == '1' }
+    params_hash.transform_values { |x| ActiveModel::Type::Boolean.new.cast(x) }
   end
 
   def change?(key)

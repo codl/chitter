@@ -44,6 +44,7 @@ class Settings::PreferencesController < ApplicationController
       :setting_system_font_ui,
       :setting_noindex,
       :setting_theme,
+      :setting_hide_network,
       :setting_wide_columns,
       :setting_purple_shades,
       notification_emails: %i(follow follow_request reblog favourite mention digest),

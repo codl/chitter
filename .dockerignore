@@ -13,3 +13,4 @@ backups/
 docker-compose
 postgres
 redis
+elasticsearch
