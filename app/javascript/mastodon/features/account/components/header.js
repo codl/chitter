@@ -8,7 +8,6 @@ import spring from 'react-motion/lib/spring';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { autoPlayGif, me } from '../../../initial_state';
 import classNames from 'classnames';
-import emojify from '../../emoji/emoji';
 
 const messages = defineMessages({
   unfollow: { id: 'account.unfollow', defaultMessage: 'Unfollow' },
@@ -16,13 +15,6 @@ const messages = defineMessages({
   requested: { id: 'account.requested', defaultMessage: 'Awaiting approval. Click to cancel follow request' },
   unblock: { id: 'account.unblock', defaultMessage: 'Unblock @{name}' },
 });
-
-const deep_emojify = (input) => {
-  if(typeof input == 'string'){
-    return emojify(input);
-  }
-  return input.map(deep_emojify);
-};
 
 class Avatar extends ImmutablePureComponent {
 
@@ -136,18 +128,12 @@ export default class Header extends ImmutablePureComponent {
       lockedIcon = <i className='fa fa-lock' />;
     }
 
-    const content         = {
-      __html: emojify(account.get('x_note_without_metadata'))
-    };
+    const content         = { __html: account.get('note_emojified') };
     const displayNameHtml = { __html: account.get('display_name_html') };
     const fields          = account.get('fields');
     const badge           = account.get('bot') ? (<div className='roles'><div className='account-role bot'><FormattedMessage id='account.badges.bot' defaultMessage='Bot' /></div></div>) : null;
 
-    const metadata        = deep_emojify(account.get('x_metadata').toJS());
-
     return (
-      <div className='account__container'>
-
       <div className={classNames('account__header', { inactive: !!account.get('moved') })} style={{ backgroundImage: `url(${account.get('header')})` }}>
         <div>
           <Avatar account={account} />
@@ -174,25 +160,6 @@ export default class Header extends ImmutablePureComponent {
           {mutingInfo}
           {actionBtn}
         </div>
-      </div>
-
-      {!!metadata.length && (
-        <table className='account__metadata'>
-          <tbody>
-            {metadata.map((row, i) => (
-              <tr key={i}>
-                <th scope='row'>
-                  <div dangerouslySetInnerHTML= {{ __html: row[0] }} />
-                </th>
-                <td>
-                  <div dangerouslySetInnerHTML= {{ __html: row[1] }} />
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      )}
-
       </div>
     );
   }
