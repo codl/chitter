@@ -28,8 +28,17 @@ $ui-button-inactive-color: #444;
   .navigation-bar strong {
     color: white;
   }
-  .character-counter {
-    color: white;
+
+  .compose-form .compose-form__buttons-wrapper {
+    .character-counter,
+    .icon-button,
+    .text-icon-button {
+      color: white;
+      &.active {
+        color: $ui-primary-color;
+        background: white;
+      }
+    }
   }
 }
 
@@ -180,12 +189,8 @@ $ui-button-inactive-color: #444;
   color: desaturate(lighten($ui-secondary-color, 50%), 50%);
 }
 
-.report-modal__comment .setting-text.light {
-  border-bottom-color: rgba(255,255,255,0.4);
-}
-
-.report-modal__comment .setting-text.light:focus {
-  border-bottom-color: rgba(255,255,255,0.8);
+.report-modal__comment .setting-text {
+  color: $primary-text-color;
 }
 
 .status-check-box {
