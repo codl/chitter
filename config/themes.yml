@@ -1,4 +1,4 @@
 default: styles/chitter.scss
 bright: styles/chitter-bright.scss
 classic: styles/chitter-classic.scss
-contrast: styles/contrast.scss
+contrast: styles/chitter-contrast.scss
