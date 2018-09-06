@@ -48,7 +48,7 @@ class Settings::PreferencesController < ApplicationController
       :setting_hide_network,
       :setting_wide_columns,
       :setting_purple_shades,
-      notification_emails: %i(follow follow_request reblog favourite mention digest),
+      notification_emails: %i(follow follow_request reblog favourite mention digest report),
       interactions: %i(must_be_follower must_be_following)
     )
   end

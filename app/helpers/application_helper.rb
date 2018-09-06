@@ -27,11 +27,6 @@ module ApplicationHelper
     Setting.open_deletion
   end
 
-  def add_rtl_body_class(other_classes)
-    other_classes = "#{other_classes} rtl" if locale_direction == 'rtl'
-    other_classes
-  end
-
   def locale_direction
     if [:ar, :fa, :he].include?(I18n.locale)
       'rtl'
@@ -76,5 +71,16 @@ module ApplicationHelper
 
   def react_component(name, props = {})
     content_tag(:div, nil, data: { component: name.to_s.camelcase, props: Oj.dump(props) })
+  end
+
+  def body_classes
+    output = (@body_classes || '').split(' ')
+    output << "theme-#{current_theme.parameterize}"
+    output << 'system-font' if current_account&.user&.setting_system_font_ui
+    output << (current_account&.user&.setting_reduce_motion ? 'reduce-motion' : 'no-reduce-motion')
+    output << 'rtl' if locale_direction == 'rtl'
+    output << 'purple-shades' if current_account&.user&.setting_purple_shades
+    output << 'wide-columns' if current_account&.user&.setting_wide_columns
+    output.reject(&:blank?).join(' ')
   end
 end
