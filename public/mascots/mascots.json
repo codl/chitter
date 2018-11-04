@@ -1,5 +1,17 @@
 [
   {
+    "url": "https://media.chitter.xyz/mascots/slimepunk.png?2",
+    "height": 400,
+    "style": {
+      "backgroundPosition": "20% bottom"
+    },
+    "credit": {
+      "url": "https://chitter.xyz/@slimepunk",
+      "name": "Slimepunk",
+      "account_id": 22478
+    }
+  },
+  {
     "url": "https://media.chitter.xyz/mascots/danfoxx.png?2",
     "height": 310,
     "style": {
