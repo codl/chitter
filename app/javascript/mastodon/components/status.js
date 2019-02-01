@@ -69,6 +69,7 @@ class Status extends ImmutablePureComponent {
     unread: PropTypes.bool,
     onMoveUp: PropTypes.func,
     onMoveDown: PropTypes.func,
+    showThread: PropTypes.bool,
   };
 
   // Avoid checking props that are functions (and whose equality will always
@@ -78,7 +79,7 @@ class Status extends ImmutablePureComponent {
     'account',
     'muted',
     'hidden',
-  ]
+  ];
 
   handleClick = () => {
     if (this.props.onClick) {
@@ -170,7 +171,7 @@ class Status extends ImmutablePureComponent {
     let media = null;
     let statusAvatar, prepend, rebloggedByText;
 
-    const { intl, hidden, featured, otherAccounts, unread } = this.props;
+    const { intl, hidden, featured, otherAccounts, unread, showThread } = this.props;
 
     let { status, account, ...other } = this.props;
 
@@ -310,6 +311,12 @@ class Status extends ImmutablePureComponent {
             <StatusContent status={status} onClick={this.handleClick} expanded={!status.get('hidden')} onExpandedToggle={this.handleExpandedToggle} collapsable />
 
             {media}
+
+            {showThread && status.get('in_reply_to_id') && status.get('in_reply_to_account_id') === status.getIn(['account', 'id']) && (
+              <button className='status__content__read-more-button' onClick={this.handleClick}>
+                <FormattedMessage id='status.show_thread' defaultMessage='Show thread' />
+              </button>
+            )}
 
             <StatusActionBar status={status} account={account} {...other} />
           </div>
