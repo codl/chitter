@@ -14,7 +14,7 @@ export default class Mascot extends React.Component {
   }
 
   componentDidMount () {
-    let mascotP = fetch('https://media.chitter.xyz/mascots/mascots.json?21').then(response => response.json())
+    let mascotP = fetch('https://media.chitter.xyz/mascots/mascots.json', { mode: 'cors' }).then(response => response.json())
       .then(mascots => mascots[Math.floor(Math.random()*mascots.length)]);
     let blobP = mascotP.then(mascot => fetch(mascot.url)).then(resp => resp.blob());
     Promise.all([mascotP, blobP]).then(a => {

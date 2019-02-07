@@ -1,6 +1,6 @@
 [
   {
-    "url": "https://media.chitter.xyz/mascots/slimepunk.png?2",
+    "url": "https://media.chitter.xyz/mascots/slimepunk.png",
     "height": 400,
     "style": {
       "backgroundPosition": "20% bottom"
@@ -12,7 +12,7 @@
     }
   },
   {
-    "url": "https://media.chitter.xyz/mascots/danfoxx.png?2",
+    "url": "https://media.chitter.xyz/mascots/danfoxx.png",
     "height": 310,
     "style": {
       "marginTop": "-40px"
@@ -24,7 +24,7 @@
     }
   },
   {
-    "url": "https://media.chitter.xyz/mascots/fcard.png?9",
+    "url": "https://media.chitter.xyz/mascots/fcard.png",
     "height": 450,
     "style": {
       "marginTop": "-40px",

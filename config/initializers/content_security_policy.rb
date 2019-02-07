@@ -20,7 +20,7 @@ Rails.application.config.content_security_policy do |p|
   if Rails.env.development?
     webpacker_urls = %w(ws http).map { |protocol| "#{protocol}#{Webpacker.dev_server.https? ? 's' : ''}://#{Webpacker.dev_server.host_with_port}" }
 
-    p.connect_src :self, :blob, assets_host, Rails.configuration.x.streaming_api_base_url, *webpacker_urls
+    p.connect_src :self, :blob, assets_host, Rails.configuration.x.streaming_api_base_url, *webpacker_urls, "https://media.chitter.xyz"
     p.script_src  :self, :unsafe_inline, :unsafe_eval, assets_host
   else
     p.connect_src :self, :blob, assets_host, Rails.configuration.x.streaming_api_base_url
