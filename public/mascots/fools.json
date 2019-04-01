@@ -1,0 +1,19 @@
+
+[
+  {
+    "url": "https://media.chitter.xyz/mascots/fools1.png",
+    "height": 400
+  },
+  {
+    "url": "https://media.chitter.xyz/mascots/fools2.png",
+    "height": 400
+  },
+  {
+    "url": "https://media.chitter.xyz/mascots/fools3.png",
+    "height": 400,
+    "style": {
+      "marginTop": "-40px",
+      "backgroundPosition": "bottom center"
+    }
+  }
+]
