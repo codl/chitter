@@ -51,19 +51,28 @@ export default class Mascot extends React.Component {
         mascot_style = { ...mascot_style, ...mascot.style }
     }
 
-    let credit = mascot.credit.name;
+    let creditp = '';
 
-    if (mascot.credit.url){
-      credit = <a href={mascot.credit.url} onClick={this.handleCreditClick}>
-        {mascot.credit.name}
-      </a>
+    if (mascot.credit){
+
+      let credit = mascot.credit.name;
+
+      if (mascot.credit.url){
+        credit = <a href={mascot.credit.url} onClick={this.handleCreditClick}>
+          {mascot.credit.name}
+        </a>
+      }
+
+      creditp = (
+        <p className='mascot-credit'>
+          Mascot drawn by {credit}
+        </p>
+      );
     }
 
     return (
       <div className='mascot' style={mascot_style}>
-        <p className='mascot-credit'>
-          Mascot drawn by {credit}
-        </p>
+        {creditp}
       </div>
     )
   }
