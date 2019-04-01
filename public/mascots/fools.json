@@ -10,10 +10,6 @@
   },
   {
     "url": "https://media.chitter.xyz/mascots/fools3.png",
-    "height": 400,
-    "style": {
-      "marginTop": "-40px",
-      "backgroundPosition": "bottom center"
-    }
+    "height": 400
   }
 ]
