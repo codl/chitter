@@ -60,6 +60,7 @@ defaults: &defaults
   show_known_fediverse_at_about_page: true
   wide_columns: false
   purple_shades: false
+  photorealistic_mascot: false
 
 development:
   <<: *defaults

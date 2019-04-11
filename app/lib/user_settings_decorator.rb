@@ -35,6 +35,7 @@ class UserSettingsDecorator
     user.settings['show_application']    = show_application_preference if change?('setting_show_application')
     user.settings['wide_columns']        = wide_columns_preference if change?('setting_wide_columns')
     user.settings['purple_shades']       = purple_shades_preference if change?('setting_purple_shades')
+    user.settings['photorealistic_mascot'] = photorealistic_mascot_preference if change?('setting_photorealistic_mascot')
   end
 
   def merged_notification_emails
@@ -115,6 +116,10 @@ class UserSettingsDecorator
 
   def purple_shades_preference
     boolean_cast_setting 'setting_purple_shades'
+  end
+
+  def photorealistic_mascot_preference
+    boolean_cast_setting 'setting_photorealistic_mascot'
   end
 
   def boolean_cast_setting(key)

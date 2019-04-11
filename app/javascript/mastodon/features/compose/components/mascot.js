@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { photorealistic_mascot } from '../../../initial_state';
 
 export default class Mascot extends React.Component {
 
@@ -14,7 +15,14 @@ export default class Mascot extends React.Component {
   }
 
   componentDidMount () {
-    let mascotP = fetch('https://media.chitter.xyz/mascots/mascots.json', { mode: 'cors' }).then(response => response.json())
+    let url;
+    if(photorealistic_mascot){
+      url = 'https://media.chitter.xyz/mascots/fools.json?1'
+    }
+    else {
+      url = 'https://media.chitter.xyz/mascots/mascots.json'
+    }
+    let mascotP = fetch(url, { mode: 'cors' }).then(response => response.json())
       .then(mascots => mascots[Math.floor(Math.random()*mascots.length)]);
     let blobP = mascotP.then(mascot => fetch(mascot.url)).then(resp => resp.blob());
     Promise.all([mascotP, blobP]).then(a => {
@@ -51,19 +59,28 @@ export default class Mascot extends React.Component {
         mascot_style = { ...mascot_style, ...mascot.style }
     }
 
-    let credit = mascot.credit.name;
+    let creditp = '';
 
-    if (mascot.credit.url){
-      credit = <a href={mascot.credit.url} onClick={this.handleCreditClick}>
-        {mascot.credit.name}
-      </a>
+    if (mascot.credit){
+
+      let credit = mascot.credit.name;
+
+      if (mascot.credit.url){
+        credit = <a href={mascot.credit.url} onClick={this.handleCreditClick}>
+          {mascot.credit.name}
+        </a>
+      }
+
+      creditp = (
+        <p className='mascot-credit'>
+          Mascot drawn by {credit}
+        </p>
+      );
     }
 
     return (
       <div className='mascot' style={mascot_style}>
-        <p className='mascot-credit'>
-          Mascot drawn by {credit}
-        </p>
+        {creditp}
       </div>
     )
   }

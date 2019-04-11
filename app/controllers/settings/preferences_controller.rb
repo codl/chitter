@@ -51,6 +51,7 @@ class Settings::PreferencesController < Settings::BaseController
       :setting_show_application,
       :setting_wide_columns,
       :setting_purple_shades,
+      :setting_photorealistic_mascot,
       notification_emails: %i(follow follow_request reblog favourite mention digest report pending_account),
       interactions: %i(must_be_follower must_be_following)
     )
