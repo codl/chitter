@@ -17,7 +17,7 @@ export default class Mascot extends React.Component {
   componentDidMount () {
     let url;
     if(photorealistic_mascot){
-      url = 'https://media.chitter.xyz/mascots/fools.json?1'
+      url = 'https://media.chitter.xyz/mascots/fools.json?3'
     }
     else {
       url = 'https://media.chitter.xyz/mascots/mascots.json'
