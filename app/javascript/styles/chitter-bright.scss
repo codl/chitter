@@ -247,6 +247,10 @@ $ui-inverted-highlight-color: $ui-highlight-color;
   color: $primary-text-color;
 }
 
+.report-modal__comment .button {
+  color: $ui-inverted-foreground-color;
+}
+
 .status-check-box {
   border-bottom-color: rgba(255,255,255,0.3);
 }
@@ -404,3 +408,8 @@ a.status-card:hover, a.status-card.compact:hover {
 .admin-wrapper .button {
   color: $ui-inverted-foreground-color;
 }
+
+.account__header__tabs__buttons .logo-button { // why? why is it called logo-button? it doesn't have a logo it's the "follow" button
+  color: $ui-inverted-foreground-color;
+}
+
