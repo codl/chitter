@@ -1,25 +1,20 @@
 $ui-base-color: #eee;
 $ui-base-lighter-color: #aaa;
 $primary-text-color: black;
-$ui-primary-color: #717;
-$ui-secondary-color: #505;
-$ui-highlight-color: #e77fea;
+$ui-primary-color: #333035;
+$ui-secondary-color: #617;
+$ui-highlight-color: #83c;
 $ui-boost-color: #52c336;
 $ui-button-inactive-color: #444;
+$ui-inverted-background-color: #334;
+$ui-inverted-faded-background-color: #404049;
+$ui-inverted-foreground-color: #eee;
+$ui-inverted-highlight-color: $ui-highlight-color;
 
 @import 'chitter-common.scss';
 
-.compose-form .autosuggest-textarea__textarea,
-.compose-form .spoiler-input__input {
-  color: black;
-
-  &::placeholder {
-    color: #666;
-  }
-}
-
 .drawer__inner {
-  background-color: $ui-primary-color;
+  background-color: $ui-secondary-color;
   color: $ui-base-lighter-color;
 
   .navigation-bar {
@@ -27,6 +22,25 @@ $ui-button-inactive-color: #444;
   }
   .navigation-bar strong {
     color: white;
+  }
+  .navigation-bar__profile-edit,
+  .compose__action-bar-dropdown .icon-button {
+    color: $ui-inverted-foreground-color;
+  }
+
+  .compose__action-bar-dropdown .icon-button {
+    transition: background 300ms;
+    border-radius: 4px;
+  }
+
+  .compose__action-bar-dropdown .icon-button:hover,
+  .compose__action-bar-dropdown .icon-button:focus{
+    background: rgba(white, 20%);
+  }
+
+  .compose__action-bar-dropdown .icon-button:active,
+  .compose__action-bar-dropdown .icon-button.active{
+    background: rgba(white, 40%);
   }
 
   .compose-form .compose-form__buttons-wrapper {
@@ -46,9 +60,28 @@ $ui-button-inactive-color: #444;
   background-color: $ui-base-color;
 }
 
+.compose-form .compose-form__modifiers .compose-form__upload-description textarea,
+.compose-form .compose-form__modifiers .compose-form__upload-description textarea::placeholder,
+.compose-form .compose-form__modifiers .compose-form__upload__actions .icon-button,
+.compose-form .compose-form__modifiers .compose-form__upload__actions .icon-button:hover,
+.compose-form .compose-form__modifiers .compose-form__upload__actions .icon-button:focus,
+.compose-form .compose-form__modifiers .compose-form__upload__actions .icon-button:active{
+  color: $ui-inverted-foreground-color;
+}
+
+.compose-form .autosuggest-textarea__textarea,
+.compose-form .spoiler-input__input {
+  color: $primary-text-color;
+}
+
 .compose-form .compose-form__buttons-wrapper,
 .reply-indicator {
   background-color: rgba(255,255,255,0.4);
+}
+
+.reply-indicator__cancel .icon-button.inverted,
+.reply-indicator__content a {
+  color: $ui-base-color;
 }
 
 .compose-form__publish-button-wrapper button {
@@ -67,10 +100,25 @@ $ui-button-inactive-color: #444;
 
 
 .privacy-dropdown__dropdown {
-  background-color: $ui-primary-color;
+  background-color: $ui-secondary-color;
 }
 
-.privacy-dropdown__option__content {
+.privacy-dropdown__option {
+  color: $ui-inverted-foreground-color;
+}
+
+.privacy-dropdown__option.active,
+.privacy-dropdown__option:hover,
+.privacy-dropdown__option.active:hover {
+  color: $ui-primary-color;
+  background-color: white;
+}
+
+.privacy-dropdown__option__content,
+.privacy-dropdown__option:hover .privacy-dropdown__option__content,
+.privacy-dropdown__option.active .privacy-dropdown__option__content,
+.privacy-dropdown__option:hover .privacy-dropdown__option__content strong,
+.privacy-dropdown__option.active .privacy-dropdown__option__content strong{
   color: inherit;
 }
 
@@ -104,6 +152,12 @@ $ui-button-inactive-color: #444;
 
 .emoji-mart-category-label span {
   color: $ui-base-lighter-color;
+}
+
+.emoji-mart-search input {
+  background: transparent;
+  border-color: $ui-primary-color;
+  color: $primary-text-color;
 }
 
 
@@ -286,4 +340,67 @@ $ui-button-inactive-color: #444;
 .regeneration-indicator__label strong
 {
   color: desaturate(darken($ui-secondary-color, 10%), 50%);
+}
+
+.dropdown-menu__item a:hover,
+.dropdown-menu__item a:active,
+.dropdown-menu__item a:focus {
+  color: $ui-primary-color;
+  background: white;
+}
+
+.relationship-tag {
+  color: white;
+}
+
+.account__header__tabs__buttons .icon-button {
+  border-color: $ui-base-lighter-color;
+}
+
+.status-card {
+  border: none;
+}
+
+a.status-card, a.status-card.compact,
+a.status-card:hover, a.status-card.compact:hover,
+.status-card__image {
+  background: $ui-inverted-faded-background-color;
+}
+
+a.status-card:hover, a.status-card.compact:hover {
+  background: $ui-inverted-background-color;
+}
+
+.status-card__title {
+  color: $ui-inverted-foreground-color;
+}
+
+.status-card__host {
+  color: $ui-inverted-foreground-color;
+}
+
+.poll__chart.leading {
+  background: rgba($ui-highlight-color, 0.4);
+}
+
+.poll__chart {
+  background: rgba(black, 0.15);
+}
+
+.poll__text input[type="text"],
+.compose-form__poll-wrapper select,
+.compose-form__poll-wrapper .button.button-secondary {
+  color: black;
+  border-color: $ui-primary-color;
+}
+
+.poll__footer, .poll__link {
+  color: $ui-primary-color;
+}
+
+.admin-wrapper .sidebar ul .simple-navigation-active-leaf a,
+.admin-wrapper .simple_form button,
+.admin-wrapper .simple_form .block-button,
+.admin-wrapper .button {
+  color: $ui-inverted-foreground-color;
 }
