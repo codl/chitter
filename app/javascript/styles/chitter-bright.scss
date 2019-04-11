@@ -89,6 +89,10 @@ $ui-inverted-highlight-color: $ui-highlight-color;
   &:focus, &:hover, &:active {
     background-color: white;
   }
+  &[disabled] {
+    background-color: transparent;
+    color: $ui-inverted-foreground-color;
+  }
 }
 
 .compose-form .compose-form__modifiers .compose-form__upload-description input {
