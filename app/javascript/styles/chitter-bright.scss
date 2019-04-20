@@ -138,7 +138,7 @@ $ui-inverted-highlight-color: $ui-highlight-color;
 }
 
 .compose-form .compose-form__warning {
-  background: rgba(255,255,255, 0.7);
+  background: $ui-inverted-background-color;
 }
 
 .emoji-mart-anchors {
