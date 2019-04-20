@@ -87,3 +87,11 @@ body.purple-shades {
   left: 0;
   height: 126px;
 }
+
+a.status-link:not(.mention) {
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  &:hover, &:active, &:focus {
+    text-decoration-style: solid;
+  }
+}
