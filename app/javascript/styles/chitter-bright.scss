@@ -371,7 +371,7 @@ $ui-inverted-highlight-color: $ui-highlight-color;
 
 a.status-card, a.status-card.compact,
 a.status-card:hover, a.status-card.compact:hover,
-.status-card__image {
+.status-card__image, .status-card__content {
   background: $ui-inverted-faded-background-color;
 }
 
@@ -379,11 +379,10 @@ a.status-card:hover, a.status-card.compact:hover {
   background: $ui-inverted-background-color;
 }
 
-.status-card__title {
-  color: $ui-inverted-foreground-color;
-}
-
-.status-card__host {
+.status-card__title,
+.status-card__host,
+.status-card__actions button,
+.status-card__actions a {
   color: $ui-inverted-foreground-color;
 }
 
@@ -417,3 +416,6 @@ a.status-card:hover, a.status-card.compact:hover {
   color: $ui-inverted-foreground-color;
 }
 
+.icon-button.star-idon.active {
+  color: #ca8f04;
+}
