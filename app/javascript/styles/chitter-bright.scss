@@ -382,8 +382,16 @@ a.status-card:hover, a.status-card.compact:hover {
 .status-card__title,
 .status-card__host,
 .status-card__actions button,
-.status-card__actions a {
+.status-card__actions a,
+.media-spoiler {
   color: $ui-inverted-foreground-color;
+}
+
+.media-spoiler:active,
+.media-spoiler:focus,
+.media-spoiler:hover {
+  color: $ui-inverted-foreground-color;
+  text-decoration: underline;
 }
 
 .poll__chart.leading {
