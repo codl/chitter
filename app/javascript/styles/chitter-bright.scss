@@ -6,6 +6,7 @@ $ui-secondary-color: #617;
 $ui-highlight-color: #83c;
 $ui-boost-color: #52c336;
 $ui-button-inactive-color: #444;
+
 $ui-inverted-background-color: #334;
 $ui-inverted-faded-background-color: #404049;
 $ui-inverted-foreground-color: #eee;
@@ -380,6 +381,7 @@ a.status-card:hover, a.status-card.compact:hover {
 }
 
 .status-card__title,
+.status-card__description,
 .status-card__host,
 .status-card__actions button,
 .status-card__actions a,
