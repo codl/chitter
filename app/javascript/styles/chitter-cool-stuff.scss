@@ -88,7 +88,7 @@ body.purple-shades {
   height: 126px;
 }
 
-a.status-link:not(.mention) {
+a.status-link:not(.mention):not(.hashtag) {
   text-decoration: underline;
   text-decoration-style: dotted;
   &:hover, &:active, &:focus {
