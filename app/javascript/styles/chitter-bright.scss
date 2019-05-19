@@ -197,6 +197,7 @@ $ui-inverted-highlight-color: $ui-highlight-color;
     background-color: #999;
   }
 }
+
 .icon-button, .text-icon-button {
   &:hover, &:active, &:focus {
     color: #444;
@@ -210,11 +211,24 @@ $ui-inverted-highlight-color: $ui-highlight-color;
   &.overlayed {
     background-color: rgba(255,255,255,0.7);
     &:hover, &:active, &:focus {
-      background-color: rgba(255,255,255,0.7);
+      background-color: rgba(255,255,255,1);
     }
   }
 }
 
+.spoiler-button .spoiler-button__overlay__label {
+  background-color: rgba(255,255,255,0.7);
+  color: $ui-primary-color;
+}
+
+.spoiler-button:hover .spoiler-button__overlay__label,
+.spoiler-button:active .spoiler-button__overlay__label,
+.spoiler-button:focus .spoiler-button__overlay__label
+{
+  background-color: rgba(255,255,255,1);
+  color: $ui-primary-color;
+  text-decoration: underline;
+}
 
 .getting-started a {
   color: #222;
@@ -384,16 +398,8 @@ a.status-card:hover, a.status-card.compact:hover {
 .status-card__description,
 .status-card__host,
 .status-card__actions button,
-.status-card__actions a,
-.media-spoiler {
+.status-card__actions a {
   color: $ui-inverted-foreground-color;
-}
-
-.media-spoiler:active,
-.media-spoiler:focus,
-.media-spoiler:hover {
-  color: $ui-inverted-foreground-color;
-  text-decoration: underline;
 }
 
 .poll__chart.leading {
