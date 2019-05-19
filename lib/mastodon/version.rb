@@ -13,7 +13,7 @@ module Mastodon
     end
 
     def patch
-      0
+      3
     end
 
     def pre
@@ -33,16 +33,16 @@ module Mastodon
     end
 
     def repository
-      'codl/chitter'
+      ENV.fetch('GITHUB_REPOSITORY') { 'codl/chitter' }
     end
 
     def source_base_url
-      "https://github.com/#{repository}"
+      ENV.fetch('SOURCE_BASE_URL') { "https://github.com/#{repository}" }
     end
 
     # specify git tag or commit hash here
     def source_tag
-      'chitter'
+      ENV.fetch('SOURCE_TAG') { 'chitter' }
     end
 
     def source_url

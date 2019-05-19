@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
-import { me, invitesEnabled, version, profile_directory } from '../../initial_state';
+import { me, invitesEnabled, version, profile_directory, repository, source_url } from '../../initial_state';
 import { fetchFollowRequests } from '../../actions/accounts';
 import { List as ImmutableList } from 'immutable';
 import { Link } from 'react-router-dom';
@@ -177,7 +177,7 @@ class GettingStarted extends ImmutablePureComponent {
                 id='getting_started.open_source_notice_chitter'
                 defaultMessage='Chitter is open source software based on {mastodon}. Source code can be found at at {github}.'
                 values={{ mastodon: <a href='https://github.com/tootsuite/mastodon' rel='noopener' target='_blank'>Mastodon</a>,
-                    github: <a href='https://github.com/codl/chitter' rel='noopener' target='_blank'>codl/chitter</a> }}
+                  github: <span><a href='https://github.com/codl/chitter' rel='noopener' target='_blank'>codl/chitter</a> (v{version})</span> }}
               />
             </p>
           </div>
