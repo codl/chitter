@@ -89,9 +89,9 @@ body.purple-shades {
 }
 
 a.status-link:not(.mention):not(.hashtag) {
-  text-decoration: underline;
-  text-decoration-style: dotted;
+  text-decoration: underline solid;
+  text-decoration-color: rgba($ui-secondary-color, .4);
   &:hover, &:active, &:focus {
-    text-decoration-style: solid;
+    text-decoration-color: inherit;
   }
 }
