@@ -18,6 +18,7 @@ export const source_url = getMeta('source_url');
 export const version = getMeta('version');
 export const profile_directory = getMeta('profile_directory');
 export const isStaff = getMeta('is_staff');
+export const forceSingleColumn = !getMeta('advanced_layout');
 export const photorealistic_mascot = getMeta('photorealistic_mascot');
 
 export default initialState;
