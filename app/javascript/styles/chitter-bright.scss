@@ -268,7 +268,8 @@ $ui-inverted-highlight-color: $ui-highlight-color;
   color: desaturate(lighten($ui-secondary-color, 50%), 50%);
 }
 
-.report-modal__comment .setting-text {
+.report-modal__comment .setting-text,
+.column-inline-form .setting-text {
   color: $primary-text-color;
 }
 
