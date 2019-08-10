@@ -44,15 +44,16 @@ $ui-inverted-highlight-color: $ui-highlight-color;
     background: rgba(white, 40%);
   }
 
-  .compose-form .compose-form__buttons-wrapper {
-    .character-counter,
-    .icon-button,
-    .text-icon-button {
-      color: white;
-      &.active {
-        color: $ui-primary-color;
-        background: white;
-      }
+}
+
+.compose-form .compose-form__buttons-wrapper {
+  .character-counter__wrapper .character-counter,
+  .icon-button,
+  .text-icon-button {
+    color: white;
+    &.active {
+      color: $ui-primary-color;
+      background: white;
     }
   }
 }
@@ -78,6 +79,11 @@ $ui-inverted-highlight-color: $ui-highlight-color;
 .compose-form .compose-form__buttons-wrapper,
 .reply-indicator {
   background-color: rgba(255,255,255,0.4);
+}
+
+.compose-panel .compose-form .compose-form__buttons-wrapper,
+.compose-panel .reply-indicator {
+  background-color: $ui-secondary-color;
 }
 
 .reply-indicator__cancel .icon-button.inverted,
