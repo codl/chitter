@@ -56,7 +56,9 @@
 }
 
 @media screen and (min-width: 631px) {
-  body.wide-columns .column {
+  body.wide-columns
+    .columns-area:not(.columns-area--mobile) // this bit excludes the single-column UI
+    .column {
     max-width: 40em;
     flex: 1 0 30em;
   }
