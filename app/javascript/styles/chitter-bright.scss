@@ -446,3 +446,7 @@ a.status-card:hover, a.status-card.compact:hover {
 .getting-started__footer p a {
   color: inherit;
 }
+
+a.column-link--transparent {
+  color: $ui-primary-color;
+}
