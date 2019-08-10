@@ -435,3 +435,8 @@ a.status-card:hover, a.status-card.compact:hover {
 .icon-button.star-icon.active {
   color: #ca8f04;
 }
+
+.getting-started__footer p,
+.getting-started__footer p a {
+  color: inherit;
+}
