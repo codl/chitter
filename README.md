@@ -9,4 +9,3 @@ Notable changes from upstream:
 * loads a random mascot into the compose column
 * bios up to 500 characters long
 * easter egg
-* really good posts from a user called "codl"

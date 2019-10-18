@@ -37,6 +37,9 @@ class UserSettingsDecorator
     user.settings['wide_columns']        = wide_columns_preference if change?('setting_wide_columns')
     user.settings['purple_shades']       = purple_shades_preference if change?('setting_purple_shades')
     user.settings['photorealistic_mascot'] = photorealistic_mascot_preference if change?('setting_photorealistic_mascot')
+    user.settings['use_blurhash']        = use_blurhash_preference if change?('setting_use_blurhash')
+    user.settings['use_pending_items']   = use_pending_items_preference if change?('setting_use_pending_items')
+    user.settings['trends']              = trends_preference if change?('setting_trends')
   end
 
   def merged_notification_emails
@@ -125,6 +128,18 @@ class UserSettingsDecorator
 
   def photorealistic_mascot_preference
     boolean_cast_setting 'setting_photorealistic_mascot'
+  end
+
+  def use_blurhash_preference
+    boolean_cast_setting 'setting_use_blurhash'
+  end
+
+  def use_pending_items_preference
+    boolean_cast_setting 'setting_use_pending_items'
+  end
+
+  def trends_preference
+    boolean_cast_setting 'setting_trends'
   end
 
   def boolean_cast_setting(key)
