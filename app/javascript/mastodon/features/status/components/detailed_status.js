@@ -227,8 +227,8 @@ export default class DetailedStatus extends ImmutablePureComponent {
               <FormattedDate value={new Date(status.get('created_at'))} hour12={false} year='numeric' month='short' day='2-digit' hour='2-digit' minute='2-digit' />
             </a>{applicationLink} · {reblogLink} · {favouriteLink}
           </div>
+          <ConfettiOverlay status={status} />
         </div>
-        <ConfettiOverlay status={status} />
       </div>
     );
   }
