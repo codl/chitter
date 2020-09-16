@@ -428,6 +428,11 @@ a.status-card:hover, a.status-card.compact:hover {
   color: $ui-primary-color;
 }
 
+.poll__option input[type="text"] {
+  color: $ui-primary-color;
+  border-color: $ui-primary-color;
+}
+
 .admin-wrapper .sidebar ul .simple-navigation-active-leaf a,
 .admin-wrapper .simple_form button,
 .admin-wrapper .simple_form .block-button,
