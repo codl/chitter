@@ -68,6 +68,10 @@ body.purple-shades {
   filter: url('#purple-shades');
 }
 
+.purple-shades-container {
+  position:absolute; width:0; height:0;
+}
+
 .confetti-overlay {
   pointer-events: none;
   position: absolute;

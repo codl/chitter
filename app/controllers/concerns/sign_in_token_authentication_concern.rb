@@ -16,19 +16,24 @@ module SignInTokenAuthenticationConcern
   end
 
   def authenticate_with_sign_in_token
-    user = self.resource = find_user
+    if user_params[:email].present?
+      user = self.resource = find_user_from_params
+      prompt_for_sign_in_token(user) if user&.external_or_valid_password?(user_params[:password])
+    elsif session[:attempt_user_id]
+      user = self.resource = User.find_by(id: session[:attempt_user_id])
+      return if user.nil?
 
-    if user_params[:sign_in_token_attempt].present? && session[:attempt_user_id]
-      authenticate_with_sign_in_token_attempt(user)
-    elsif user.present? && user.external_or_valid_password?(user_params[:password])
-      prompt_for_sign_in_token(user)
+      if session[:attempt_user_updated_at] != user.updated_at.to_s
+        restart_session
+      elsif user_params.key?(:sign_in_token_attempt)
+        authenticate_with_sign_in_token_attempt(user)
+      end
     end
   end
 
   def authenticate_with_sign_in_token_attempt(user)
     if valid_sign_in_token_attempt?(user)
-      session.delete(:attempt_user_id)
-      remember_me(user)
+      clear_attempt_from_session
       sign_in(user)
     else
       flash.now[:alert] = I18n.t('users.invalid_sign_in_token')
@@ -42,10 +47,10 @@ module SignInTokenAuthenticationConcern
       UserMailer.sign_in_token(user, request.remote_ip, request.user_agent, Time.now.utc.to_s).deliver_later!
     end
 
-    set_locale do
-      session[:attempt_user_id] = user.id
-      @body_classes = 'lighter'
-      render :sign_in_token
-    end
+    set_attempt_session(user)
+
+    @body_classes = 'lighter'
+
+    set_locale { render :sign_in_token }
   end
 end

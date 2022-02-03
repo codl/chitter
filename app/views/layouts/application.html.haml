@@ -6,6 +6,7 @@
 
     - if cdn_host?
       %link{ rel: 'dns-prefetch', href: cdn_host }/
+      %meta{ name: 'cdn-host', content: cdn_host }/
 
     - if storage_host?
       %link{ rel: 'dns-prefetch', href: storage_host }/
@@ -20,23 +21,23 @@
 
     %title= content_for?(:page_title) ? safe_join([yield(:page_title).chomp.html_safe, title], ' - ') : title
 
-    = stylesheet_pack_tag 'common', media: 'all'
-    = stylesheet_pack_tag current_theme, media: 'all'
-    = javascript_pack_tag 'common', integrity: true, crossorigin: 'anonymous'
-    = javascript_pack_tag "locale_#{I18n.locale}", integrity: true, crossorigin: 'anonymous'
+    = stylesheet_pack_tag 'common', media: 'all', crossorigin: 'anonymous'
+    = stylesheet_pack_tag current_theme, media: 'all', crossorigin: 'anonymous'
+    = javascript_pack_tag 'common', crossorigin: 'anonymous'
+    = javascript_pack_tag "locale_#{I18n.locale}", crossorigin: 'anonymous'
     = csrf_meta_tags
     %meta{ name: 'style-nonce', content: request.content_security_policy_nonce }
 
     = stylesheet_link_tag '/inert.css', skip_pipeline: true, media: 'all', id: 'inert-style'
 
     - if Setting.custom_css.present?
-      = stylesheet_link_tag custom_css_path, media: 'all'
+      = stylesheet_link_tag custom_css_path, host: request.host, media: 'all'
 
     = yield :header_tags
 
   %body{ class: body_classes }
     = content_for?(:content) ? yield(:content) : yield
-    %svg(style="position:absolute; width:0; height:0;")
+    %svg{ class: 'purple-shades-container' }
       %defs
         %filter#purple-shades
           %fecolormatrix{:type => "matrix", :values => ".8 .1 .2 0 0, .3 .4 .3 0 0, .2 .1 .8 0 0, 0 0 0 1 0"}
@@ -45,5 +46,5 @@
             %fefuncb{:tablevalues => "0 .55 1", :type => "table"}
 
     .logo-resources
-      = render file: Rails.root.join('app', 'javascript', 'images', 'logo_transparent.svg')
-      = render file: Rails.root.join('app', 'javascript', 'images', 'logo_full.svg')
+      = raw render file: Rails.root.join('app', 'javascript', 'images', 'logo_transparent.svg')
+      = raw render file: Rails.root.join('app', 'javascript', 'images', 'logo_full.svg')

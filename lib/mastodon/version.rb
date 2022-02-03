@@ -9,11 +9,11 @@ module Mastodon
     end
 
     def minor
-      2
+      4
     end
 
     def patch
-      0
+      6
     end
 
     def flags
@@ -33,16 +33,16 @@ module Mastodon
     end
 
     def repository
-      ENV.fetch('GITHUB_REPOSITORY') { 'codl/chitter' }
+      ENV.fetch('GITHUB_REPOSITORY', 'codl/chitter')
     end
 
     def source_base_url
-      ENV.fetch('SOURCE_BASE_URL') { "https://github.com/#{repository}" }
+      ENV.fetch('SOURCE_BASE_URL', "https://github.com/#{repository}")
     end
 
     # specify git tag or commit hash here
     def source_tag
-      ENV.fetch('SOURCE_TAG') { 'chitter' }
+      ENV.fetch('SOURCE_TAG', 'chitter')
     end
 
     def source_url
