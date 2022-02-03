@@ -37,7 +37,7 @@
 
   %body{ class: body_classes }
     = content_for?(:content) ? yield(:content) : yield
-    %svg(style="position:absolute; width:0; height:0;")
+    %svg{ class: 'purple-shades-container' }
       %defs
         %filter#purple-shades
           %fecolormatrix{:type => "matrix", :values => ".8 .1 .2 0 0, .3 .4 .3 0 0, .2 .1 .8 0 0, 0 0 0 1 0"}
