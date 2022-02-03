@@ -67,7 +67,7 @@ module AccountInteractions
     private
 
     def follow_mapping(query, field)
-      query.pluck(field).each_with_object({}) { |id, mapping| mapping[id] = true }
+      query.pluck(field).index_with(true)
     end
   end
 
@@ -184,6 +184,14 @@ module AccountInteractions
     active_relationships.where(target_account: other_account).exists?
   end
 
+  def following_anyone?
+    active_relationships.exists?
+  end
+
+  def not_following_anyone?
+    !following_anyone?
+  end
+
   def blocking?(other_account)
     block_relationships.where(target_account: other_account).exists?
   end
@@ -243,10 +251,13 @@ module AccountInteractions
          .where('users.current_sign_in_at > ?', User::ACTIVE_DURATION.ago)
   end
 
-  def remote_followers_hash(url_prefix)
-    Rails.cache.fetch("followers_hash:#{id}:#{url_prefix}") do
+  def remote_followers_hash(url)
+    url_prefix = url[Account::URL_PREFIX_RE]
+    return if url_prefix.blank?
+
+    Rails.cache.fetch("followers_hash:#{id}:#{url_prefix}/") do
       digest = "\x00" * 32
-      followers.where(Account.arel_table[:uri].matches(url_prefix + '%', false, true)).pluck_each(:uri) do |uri|
+      followers.where(Account.arel_table[:uri].matches("#{Account.sanitize_sql_like(url_prefix)}/%", false, true)).or(followers.where(uri: url_prefix)).pluck_each(:uri) do |uri|
         Xorcist.xor!(digest, Digest::SHA256.digest(uri))
       end
       digest.unpack('H*')[0]
