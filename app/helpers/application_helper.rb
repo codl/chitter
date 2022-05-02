@@ -176,6 +176,8 @@ module ApplicationHelper
     output << 'system-font' if current_account&.user&.setting_system_font_ui
     output << (current_account&.user&.setting_reduce_motion ? 'reduce-motion' : 'no-reduce-motion')
     output << 'rtl' if locale_direction == 'rtl'
+    output << 'purple-shades' if current_account&.user&.setting_purple_shades
+    output << 'wide-columns' if current_account&.user&.setting_wide_columns
     output.reject(&:blank?).join(' ')
   end
 
