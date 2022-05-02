@@ -14,8 +14,6 @@ vendor/bundle
 .DS_Store
 *.swp
 *~
-backups/
-docker-compose
 postgres
 postgres14
 redis
