@@ -17,6 +17,7 @@ vendor/bundle
 backups/
 docker-compose
 postgres
+postgres14
 redis
 elasticsearch
 chart
