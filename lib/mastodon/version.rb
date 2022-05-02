@@ -13,7 +13,7 @@ module Mastodon
     end
 
     def patch
-      6
+      1
     end
 
     def flags
@@ -21,7 +21,7 @@ module Mastodon
     end
 
     def suffix
-      ''
+      '+chitter'
     end
 
     def to_a
