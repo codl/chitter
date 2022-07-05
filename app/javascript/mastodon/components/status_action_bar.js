@@ -8,8 +8,9 @@ import { hasAmiga } from '../amiga';
 import DropdownMenuContainer from '../containers/dropdown_menu_container';
 import { defineMessages, injectIntl } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
-import { me, isStaff } from '../initial_state';
+import { me } from '../initial_state';
 import classNames from 'classnames';
+import { PERMISSION_MANAGE_USERS } from 'mastodon/permissions';
 
 const messages = defineMessages({
   delete: { id: 'status.delete', defaultMessage: 'Delete' },
@@ -57,6 +58,7 @@ class StatusActionBar extends ImmutablePureComponent {
 
   static contextTypes = {
     router: PropTypes.object,
+    identity: PropTypes.object,
   };
 
   static propTypes = {
@@ -308,7 +310,7 @@ class StatusActionBar extends ImmutablePureComponent {
         }
       }
 
-      if (isStaff) {
+      if ((this.context.identity.permissions & PERMISSION_MANAGE_USERS) === PERMISSION_MANAGE_USERS) {
         menu.push(null);
         menu.push({ text: intl.formatMessage(messages.admin_account, { name: account.get('username') }), href: `/admin/accounts/${status.getIn(['account', 'id'])}` });
         menu.push({ text: intl.formatMessage(messages.admin_status), href: `/admin/accounts/${status.getIn(['account', 'id'])}/statuses?id=${status.get('id')}` });
