@@ -46,6 +46,7 @@ const messages = defineMessages({
   unblockDomain: { id: 'account.unblock_domain', defaultMessage: 'Unblock domain {domain}' },
   unmute: { id: 'account.unmute', defaultMessage: 'Unmute @{name}' },
   unblock: { id: 'account.unblock', defaultMessage: 'Unblock @{name}' },
+  filter: { id: 'status.filter', defaultMessage: 'Filter this post' },
 });
 
 const mapStateToProps = (state, { status }) => ({
@@ -82,6 +83,7 @@ class StatusActionBar extends ImmutablePureComponent {
     onPin: PropTypes.func,
     onBookmark: PropTypes.func,
     onFilter: PropTypes.func,
+    onAddFilter: PropTypes.func,
     withDismiss: PropTypes.bool,
     withCounters: PropTypes.bool,
     scrollKey: PropTypes.string,
@@ -213,8 +215,8 @@ class StatusActionBar extends ImmutablePureComponent {
     this.props.onMuteConversation(this.props.status);
   }
 
-  handleFilter = () => {
-    this.props.onFilter();
+  handleFilterClick = () => {
+    this.props.onAddFilter(this.props.status);
   }
 
   handleCopy = () => {
@@ -237,7 +239,7 @@ class StatusActionBar extends ImmutablePureComponent {
   }
 
 
-  handleFilterClick = () => {
+  handleHideClick = () => {
     this.props.onFilter();
   }
 
@@ -294,6 +296,12 @@ class StatusActionBar extends ImmutablePureComponent {
         menu.push({ text: intl.formatMessage(messages.unblock, { name: account.get('username') }), action: this.handleBlockClick });
       } else {
         menu.push({ text: intl.formatMessage(messages.block, { name: account.get('username') }), action: this.handleBlockClick });
+      }
+
+      if (!this.props.onFilter) {
+        menu.push(null);
+        menu.push({ text: intl.formatMessage(messages.filter), action: this.handleFilterClick });
+        menu.push(null);
       }
 
       menu.push({ text: intl.formatMessage(messages.report, { name: account.get('username') }), action: this.handleReport });
@@ -363,7 +371,7 @@ class StatusActionBar extends ImmutablePureComponent {
     );
 
     const filterButton = this.props.onFilter && (
-      <IconButton className='status__action-bar-button' title={intl.formatMessage(messages.hide)} icon='eye' onClick={this.handleFilterClick} />
+      <IconButton className='status__action-bar-button' title={intl.formatMessage(messages.hide)} icon='eye' onClick={this.handleHideClick} />
     );
 
     return (
