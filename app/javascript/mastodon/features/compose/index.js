@@ -17,6 +17,7 @@ import Icon from 'mastodon/components/icon';
 // import Mascot from './components/mascot';
 import { logOut } from 'mastodon/utils/log_out';
 import Column from 'mastodon/components/column';
+import { Helmet } from 'react-helmet';
 
 const messages = defineMessages({
   start: { id: 'getting_started.heading', defaultMessage: 'Getting started' },
@@ -144,6 +145,10 @@ class Compose extends React.PureComponent {
       <Column onFocus={this.onFocus}>
         <NavigationContainer onClose={this.onBlur} />
         <ComposeFormContainer />
+
+        <Helmet>
+          <meta name='robots' content='noindex' />
+        </Helmet>
       </Column>
     );
   }
