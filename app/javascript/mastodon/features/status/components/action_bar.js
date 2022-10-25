@@ -306,8 +306,9 @@ class ActionBar extends React.PureComponent {
         <div className='detailed-status__button'>
           {maybeAmigaBall}
         </div>
-        {shareButton}
         <div className='detailed-status__button'><IconButton className='bookmark-icon' disabled={!signedIn} active={status.get('bookmarked')} title={intl.formatMessage(messages.bookmark)} icon='bookmark' onClick={this.handleBookmarkClick} /></div>
+
+        {shareButton}
 
         <div className='detailed-status__action-bar-dropdown'>
           <DropdownMenuContainer size={18} icon='ellipsis-h' disabled={!signedIn} status={status} items={menu} direction='left' title={intl.formatMessage(messages.more)} />
