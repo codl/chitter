@@ -20,7 +20,7 @@ export default class Mascot extends React.Component {
       url = 'https://media.chitter.xyz/mascots/fools.json?7'
     }
     else {
-      url = 'https://media.chitter.xyz/mascots/mascots.json?1'
+      url = 'https://media.chitter.xyz/mascots/mascots.json?v=2022'
     }
     let mascotP = fetch(url, { mode: 'cors' }).then(response => response.json())
       .then(mascots => mascots[Math.floor(Math.random()*mascots.length)]);

@@ -8,7 +8,7 @@
     "credit": {
       "url": "https://chitter.xyz/@internetwolf",
       "name": "internetwolf",
-      "account_id": 115925
+      "account_id": "115925"
     }
   },
   {
@@ -20,7 +20,7 @@
     "credit": {
       "url": "https://chitter.xyz/@Danfoxx",
       "name": "Dan Foxx",
-      "account_id": 1352
+      "account_id": "1352"
     }
   },
   {
@@ -33,7 +33,20 @@
     "credit": {
       "url": "https://chitter.xyz/@fcard",
       "name": "φcard",
-      "account_id": 4522
+      "account_id": "4522"
+    }
+  },
+  {
+    "url": "https://media.chitter.xyz/mascots/spadetale.png",
+    "height": 450,
+    "style": {
+      "marginTop": "-40px",
+      "backgroundPosition": "bottom center"
+    },
+    "credit": {
+      "url": "https://chitter.xyz/@SpadeTale",
+      "name": "SpadeTale",
+      "account_id": "108320425311692717"
     }
   }
 ]
