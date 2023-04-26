@@ -9,7 +9,7 @@ module Mastodon
     end
 
     def minor
-      0
+      1
     end
 
     def patch
@@ -42,7 +42,7 @@ module Mastodon
 
     # specify git tag or commit hash here
     def source_tag
-      ENV.fetch('SOURCE_TAG', 'chitter')
+      ENV.fetch('SOURCE_TAG', nil)
     end
 
     def source_url

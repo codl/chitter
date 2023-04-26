@@ -75,6 +75,7 @@
  * @property {boolean} timeline_preview
  * @property {string} title
  * @property {boolean} trends
+ * @property {boolean} trends_as_landing_page
  * @property {boolean} unfollow_modal
  * @property {boolean} use_blurhash
  * @property {boolean=} use_pending_items
@@ -111,6 +112,7 @@ export const displayMedia = getMeta('display_media');
 export const domain = getMeta('domain');
 export const expandSpoilers = getMeta('expand_spoilers');
 export const forceSingleColumn = !getMeta('advanced_layout');
+export const photorealistic_mascot = getMeta('photorealistic_mascot');
 export const limitedFederationMode = getMeta('limited_federation_mode');
 export const mascot = getMeta('mascot');
 export const me = getMeta('me');
@@ -124,14 +126,15 @@ export const searchEnabled = getMeta('search_enabled');
 export const showTrends = getMeta('trends');
 export const singleUserMode = getMeta('single_user_mode');
 export const source_url = getMeta('source_url');
-export const photorealistic_mascot = getMeta('photorealistic_mascot');
 export const timelinePreview = getMeta('timeline_preview');
 export const title = getMeta('title');
+export const trendsAsLanding = getMeta('trends_as_landing_page');
 export const unfollowModal = getMeta('unfollow_modal');
 export const useBlurhash = getMeta('use_blurhash');
 export const usePendingItems = getMeta('use_pending_items');
 export const version = getMeta('version');
 export const translationEnabled = getMeta('translation_enabled');
 export const languages = initialState?.languages;
+export const statusPageUrl = getMeta('status_page_url');
 
 export default initialState;
