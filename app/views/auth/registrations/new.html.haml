@@ -28,7 +28,7 @@
   - if approved_registrations? && !@invite.present?
     .fields-group
       = f.simple_fields_for :invite_request, resource.invite_request || resource.build_invite_request do |invite_request_fields|
-        = invite_request_fields.input :text, as: :text, wrapper: :with_block_label, required: Setting.require_invite_text
+        = invite_request_fields.input :text, as: :text, wrapper: :with_block_label, required: Setting.require_invite_text, hint: "Please introduce yourself and explain why you would like to join Chitter. This will help us review your application"
 
 
   = hidden_field_tag :accept, params[:accept]
