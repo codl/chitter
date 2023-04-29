@@ -12,6 +12,8 @@ import Motion from '../ui/util/optional_motion';
 import spring from 'react-motion/lib/spring';
 import SearchResultsContainer from './containers/search_results_container';
 import { openModal } from 'mastodon/actions/modal';
+import elephantUIPlane from '../../../images/elephant_ui_plane.svg';
+import { mascot } from '../../initial_state';
 import Icon from 'mastodon/components/icon';
 // import Mascot from './components/mascot';
 import { logOut } from 'mastodon/utils/log_out';
