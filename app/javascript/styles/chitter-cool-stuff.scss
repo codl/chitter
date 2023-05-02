@@ -101,3 +101,8 @@ a.status-link:not(.mention):not(.hashtag) {
     text-decoration-color: inherit;
   }
 }
+
+// temporary fix for giant mascot
+body .drawer__inner__mastodon > img {
+  object-fit: scale-down;
+}
