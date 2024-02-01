@@ -28,11 +28,12 @@
   .fields-group
     = f.input :chosen_languages, collection: filterable_languages, wrapper: :with_block_label, include_blank: false, label_method: ->(locale) { native_locale_name(locale) }, required: false, as: :check_boxes, collection_wrapper_tag: 'ul', item_wrapper_tag: 'li'
 
-  %hr#settings_easter_eggs/
+  -#
+    %hr#settings_easter_eggs/
 
-  .fields-group
-    = f.input :setting_purple_shades, as: :boolean, wrapper: :with_label, label: "Purple shades"
-    //= f.input :setting_photorealistic_mascot, as: :boolean, wrapper: :with_label, label: "Photo-realistic mascot"
+    .fields-group
+      = f.input :setting_purple_shades, as: :boolean, wrapper: :with_label, label: "Purple shades"
+      = f.input :setting_photorealistic_mascot, as: :boolean, wrapper: :with_label, label: "Photo-realistic mascot"
 
   .actions
     = f.button :button, t('generic.save_changes'), type: :submit
