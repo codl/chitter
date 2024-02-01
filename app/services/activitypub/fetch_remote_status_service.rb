@@ -2,20 +2,21 @@
 
 class ActivityPub::FetchRemoteStatusService < BaseService
   include JsonLdHelper
+  include DomainControlHelper
   include Redisable
 
   DISCOVERIES_PER_REQUEST = 1000
 
   # Should be called when uri has already been checked for locality
-  def call(uri, id: true, prefetched_body: nil, on_behalf_of: nil, expected_actor_uri: nil, request_id: nil)
+  def call(uri, prefetched_body: nil, on_behalf_of: nil, expected_actor_uri: nil, request_id: nil)
+    return if domain_not_allowed?(uri)
+
     @request_id = request_id || "#{Time.now.utc.to_i}-status-#{uri}"
-    @json = begin
-      if prefetched_body.nil?
-        fetch_resource(uri, id, on_behalf_of)
-      else
-        body_to_json(prefetched_body, compare_id: id ? uri : nil)
-      end
-    end
+    @json = if prefetched_body.nil?
+              fetch_resource(uri, true, on_behalf_of)
+            else
+              body_to_json(prefetched_body, compare_id: uri)
+            end
 
     return unless supported_context?
 
@@ -58,12 +59,13 @@ class ActivityPub::FetchRemoteStatusService < BaseService
 
   def trustworthy_attribution?(uri, attributed_to)
     return false if uri.nil? || attributed_to.nil?
+
     Addressable::URI.parse(uri).normalized_host.casecmp(Addressable::URI.parse(attributed_to).normalized_host).zero?
   end
 
   def account_from_uri(uri)
     actor = ActivityPub::TagManager.instance.uri_to_resource(uri, Account)
-    actor = ActivityPub::FetchRemoteAccountService.new.call(uri, id: true, request_id: @request_id) if actor.nil? || actor.possibly_stale?
+    actor = ActivityPub::FetchRemoteAccountService.new.call(uri, request_id: @request_id) if actor.nil? || actor.possibly_stale?
     actor
   end
 

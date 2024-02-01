@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe ActivityPub::FetchRemoteActorService, type: :service do
-  subject { ActivityPub::FetchRemoteActorService.new }
+  subject { described_class.new }
 
   let!(:actor) do
     {
@@ -16,7 +18,7 @@ RSpec.describe ActivityPub::FetchRemoteActorService, type: :service do
   end
 
   describe '#call' do
-    let(:account) { subject.call('https://example.com/alice', id: true) }
+    let(:account) { subject.call('https://example.com/alice') }
 
     shared_examples 'sets profile data' do
       it 'returns an account' do
