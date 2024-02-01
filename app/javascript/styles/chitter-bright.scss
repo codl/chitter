@@ -265,6 +265,10 @@ $ui-inverted-highlight-color: $ui-highlight-color;
   color: $ui-inverted-foreground-color;
 }
 
+.report-dialog-modal__textarea {
+	color: black;
+}
+
 .status-check-box {
   border-bottom-color: rgba(255,255,255,0.3);
 }
