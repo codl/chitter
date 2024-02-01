@@ -1,5 +1,4 @@
 import PropTypes from 'prop-types';
-import IconButton from './icon_button';
 import AmigaBall from './amigaball';
 import { hasAmiga } from '../amiga';
 import { defineMessages, injectIntl } from 'react-intl';
