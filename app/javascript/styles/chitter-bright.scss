@@ -452,3 +452,9 @@ a.status-card:hover, a.status-card.compact:hover {
 a.column-link--transparent {
   color: $ui-primary-color;
 }
+
+.button.button-secondary {
+  color: $ui-secondary-color;
+  border-color: $ui-secondary-color;
+
+}
