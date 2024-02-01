@@ -92,13 +92,12 @@ $ui-inverted-highlight-color: $ui-highlight-color;
 }
 
 .compose-form__publish-button-wrapper button {
-  background-color: rgba(255,255,255,0.7);
+  background-color: $ui-secondary-color;
   &:focus, &:hover, &:active {
-    background-color: white;
+    background-color: $ui-highlight-color;
   }
   &[disabled] {
-    background-color: transparent;
-    color: $ui-inverted-foreground-color;
+    background-color: $ui-button-inactive-color;
   }
 }
 
