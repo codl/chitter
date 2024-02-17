@@ -352,7 +352,6 @@ class StatusActionBar extends ImmutablePureComponent {
           onClick={this.handleFavouriteClick}
           active={status.get('favourited')}
           className='status__action-bar__button star-icon'
-          disabled={anonymousAccess}
           />
       );
     } else {
