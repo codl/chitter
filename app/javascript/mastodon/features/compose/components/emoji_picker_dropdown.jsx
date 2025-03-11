@@ -397,7 +397,7 @@ class EmojiPickerDropdown extends PureComponent {
           title={title}
           aria-expanded={active}
           active={active}
-          iconComponent={<img src={`${assetHost}/raccoon-emoji.png`} alt="Emoji" />}
+          iconComponent={(props) => <img src={`${assetHost}/raccoon-emoji.png`} alt="Emoji" {...props} />}
           onClick={this.onToggle}
           inverted
         />
