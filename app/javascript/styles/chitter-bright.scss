@@ -101,28 +101,11 @@ $ui-inverted-highlight-color: $ui-highlight-color;
   }
 }
 
-
-.privacy-dropdown__dropdown {
-  background-color: $ui-secondary-color;
-}
-
-.privacy-dropdown__option {
-  color: $ui-inverted-foreground-color;
-}
-
 .privacy-dropdown__option.active,
-.privacy-dropdown__option:hover,
-.privacy-dropdown__option.active:hover {
-  color: $ui-primary-color;
-  background-color: white;
-}
-
-.privacy-dropdown__option__content,
-.privacy-dropdown__option:hover .privacy-dropdown__option__content,
 .privacy-dropdown__option.active .privacy-dropdown__option__content,
-.privacy-dropdown__option:hover .privacy-dropdown__option__content strong,
-.privacy-dropdown__option.active .privacy-dropdown__option__content strong{
-  color: inherit;
+.privacy-dropdown__option.active .privacy-dropdown__option__content strong
+{
+  color: white;
 }
 
 .compose-form__buttons .icon-button,
