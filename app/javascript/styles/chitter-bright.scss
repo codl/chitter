@@ -66,6 +66,10 @@ $ui-inverted-highlight-color: $ui-highlight-color;
   background: $ui-inverted-background-color;
 }
 
+.compose-form .autosuggest-textarea__textarea {
+  color: black;
+}
+
 .emoji-mart-anchors {
   color: rgba(255,255,255,0.4);
 }
