@@ -14,6 +14,11 @@ $ui-inverted-highlight-color: $ui-highlight-color;
 
 @import 'chitter-common.scss';
 
+:root {
+  --modal-background-color: rgba(255,255,255,.5);
+  --background-filter: blur(10px) saturate(1.7) contrast(0.75) brightness(1.2);
+}
+
 .compose-form__buttons .icon-button:hover,
 .compose-form__buttons .icon-button:focus
 {
@@ -156,10 +161,6 @@ $ui-inverted-highlight-color: $ui-highlight-color;
 
 .onboarding-modal__dot.active {
   background: white;
-}
-
-.report-modal__container {
-  background-color: rgba(0,0,0,0.5);
 }
 
 .report-modal__container .status__content {
