@@ -19,6 +19,14 @@ $ui-inverted-highlight-color: $ui-highlight-color;
   --background-filter: blur(10px) saturate(1.7) contrast(0.75) brightness(1.2);
 }
 
+.hover-card .account-fields dl dt {
+  color: $primary-text-color;
+}
+
+.hover-card .account-fields dl:not(:first-child) {
+  border-block-start: .1rem solid $ui-base-lighter-color;
+}
+
 .compose-form__buttons .icon-button:hover,
 .compose-form__buttons .icon-button:focus
 {
