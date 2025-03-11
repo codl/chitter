@@ -14,87 +14,22 @@ $ui-inverted-highlight-color: $ui-highlight-color;
 
 @import 'chitter-common.scss';
 
-.drawer__inner {
-  background-color: $ui-secondary-color;
-  color: $ui-base-lighter-color;
-
-  .navigation-bar {
-    color: lighten($ui-primary-color, 50%);
-  }
-  .navigation-bar strong {
-    color: white;
-  }
-  .navigation-bar__profile-edit,
-  .compose__action-bar-dropdown .icon-button {
-    color: $ui-inverted-foreground-color;
-  }
-
-  .compose__action-bar-dropdown .icon-button {
-    transition: background 300ms;
-    border-radius: 4px;
-  }
-
-  .compose__action-bar-dropdown .icon-button:hover,
-  .compose__action-bar-dropdown .icon-button:focus{
-    background: rgba(white, 20%);
-  }
-
-  .compose__action-bar-dropdown .icon-button:active,
-  .compose__action-bar-dropdown .icon-button.active{
-    background: rgba(white, 40%);
-  }
-
-}
-
-.compose-form .compose-form__buttons-wrapper {
-  .character-counter__wrapper .character-counter,
-  .icon-button,
-  .text-icon-button {
-    color: white;
-    &.active {
-      color: $ui-primary-color;
-      background: white;
-    }
-  }
-}
-
-.list-editor .drawer__inner {
-  background-color: $ui-base-color;
-}
-
-.compose-form .compose-form__modifiers .compose-form__upload-description textarea,
-.compose-form .compose-form__modifiers .compose-form__upload-description textarea::placeholder,
-.compose-form .compose-form__modifiers .compose-form__upload__actions .icon-button,
-.compose-form .compose-form__modifiers .compose-form__upload__actions .icon-button:hover,
-.compose-form .compose-form__modifiers .compose-form__upload__actions .icon-button:focus,
-.compose-form .compose-form__modifiers .compose-form__upload__actions .icon-button:active{
+.compose-form__buttons .icon-button:hover,
+.compose-form__buttons .icon-button:focus
+{
+  background-color: $ui-inverted-background-color;
   color: $ui-inverted-foreground-color;
 }
 
-.compose-form .autosuggest-textarea__textarea,
-.compose-form .spoiler-input__input {
-  color: $primary-text-color;
+.compose-form__buttons button.icon-button.active {
+  color: $ui-inverted-foreground-color;
 }
 
-.compose-form .compose-form__buttons-wrapper {
-  background-color: $ui-secondary-color;
-}
-
-.compose-form__publish-button-wrapper button {
-  background-color: $ui-secondary-color;
-  &:focus, &:hover, &:active {
-    background-color: $ui-highlight-color;
-  }
-  &[disabled] {
-    background-color: $ui-button-inactive-color;
-  }
-}
-
-.compose-form .compose-form__modifiers .compose-form__upload-description input {
-  color: white;
-  &::placeholder {
-    color: white;
-  }
+.compose-form__buttons .icon-button.disabled,
+.compose-form__buttons .icon-button.disabled:hover
+{
+  background-color: transparent;
+  color: $ui-button-inactive-color;
 }
 
 .privacy-dropdown__option.active,
