@@ -80,10 +80,6 @@ $ui-inverted-highlight-color: $ui-highlight-color;
   background-color: $ui-secondary-color;
 }
 
-.reply-indicator {
-	background-color: $ui-inverted-background-color;
-}
-
 .compose-form__publish-button-wrapper button {
   background-color: $ui-secondary-color;
   &:focus, &:hover, &:active {
@@ -440,4 +436,14 @@ a.column-link--transparent {
   color: $ui-secondary-color;
   border-color: $ui-secondary-color;
 
+}
+
+
+.admin-wrapper .sidebar .selected {
+  background-color: rgba(0,0,0,.05);
+}
+
+.admin-wrapper .sidebar ul .simple-navigation-active-leaf a {
+  color: $ui-highlight-color;
+  border-left: .2rem solid currentColor;
 }
