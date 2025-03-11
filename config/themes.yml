@@ -2,3 +2,4 @@ default: styles/chitter.scss
 bright: styles/chitter-bright.scss
 classic: styles/chitter-classic.scss
 contrast: styles/chitter-contrast.scss
+mastodon-light: styles/mastodon-light.scss
